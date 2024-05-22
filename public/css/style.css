@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+#side_nav {
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.sidebar ul li:hover {
+    background-color: #2e4765;
+    border-radius: 8px;
+}
+
+/* .sidebar ul li.active {
+    background-color: #2e4765;
+    border-radius: 8px;
+} */
+
+.sidebar ul li:hover a,
+.sidebar ul li:hover a i {
+    color: white !important;
+}
+
+/* .sidebar-item.active a,
+.sidebar-item.active a i {
+    background-color: #2e4765;
+    color: #fff;
+} */
+
+.sidebar-item .dropdown-content {
+    display: none;
+}
+.sidebar-item.open .dropdown-content {
+    display: block;
+}
