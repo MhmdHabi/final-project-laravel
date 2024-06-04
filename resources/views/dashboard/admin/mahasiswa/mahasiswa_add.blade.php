@@ -58,6 +58,15 @@
                     </select>
                 </div>
                 <div class="mb-4">
+                    <label for="role" class="block md:text-md lg:text-lg font-bold mb-2">Role</label>
+                    <select name="role" id="role" class="w-full border-gray-700 rounded-md px-3 py-2">
+                        <option selected disabled>Pilih Role</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Dosen">Dosen</option>
+                        <option value="Mahasiswa">Mahasiswa</option>
+                    </select>
+                </div>
+                <div class="mb-4">
                     <label for="password" class="block md:text-md lg:text-lg font-bold mb-2">Password</label>
                     <div class="relative">
                         <input type="password" name="password" id="password"
