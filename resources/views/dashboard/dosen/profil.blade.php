@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('judul', 'Profil Mahasiswa')
+@section('judul', 'Profil Dosen')
 
 @section('content')
     <div class="card-body lg:flex sm:block shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5">
@@ -10,11 +10,15 @@
         <div class="ml-1 w-full mt-3 mr-3">
             <h4 class="font-bold py-3 border-t border-b">Muhammad Habi</h4>
             <div class="list flex py-3 border-b">
-                <p class="w-36">Nim</p>
+                <p class="w-36">NIDN</p>
                 <p>: 8020210101</p>
             </div>
             <div class="list flex py-3 border-b">
                 <p class="w-36">Email</p>
+                <p>: 8020210101</p>
+            </div>
+            <div class="list flex py-3 border-b">
+                <p class="w-36">Jabatan</p>
                 <p>: 8020210101</p>
             </div>
             <div class="list flex py-3 border-b">
@@ -31,14 +35,6 @@
             </div>
             <div class="list flex py-3 border-b">
                 <p class="w-36">Agama</p>
-                <p>: 8020210101</p>
-            </div>
-            <div class="list flex py-3 border-b">
-                <p class="w-36">Jurusan</p>
-                <p>: 8020210101</p>
-            </div>
-            <div class="list flex py-3 border-b">
-                <p class="w-36">Status Kuliah</p>
                 <p>: 8020210101</p>
             </div>
             <div class="flex justify-end mt-2">

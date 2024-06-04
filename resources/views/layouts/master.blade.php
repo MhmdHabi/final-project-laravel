@@ -31,9 +31,9 @@
 
 
             <!-- Konten dan Footer Wrapper -->
-            <main class="flex-1 flex flex-col px-4 mt-16 overflow-x-auto ">
+            <main class="flex-1 flex flex-col px-4 mt-16">
                 <!-- Isi Konten -->
-                <div class=" md:p-4 sm:pl-0 rounded-lg mt-2 grow max-w-[100%]">
+                <div class=" md:px-4 sm:pl-0 rounded-lg mt-2 grow max-w-[100%]">
                     @yield('content')
                 </div>
 
@@ -72,24 +72,6 @@
 
             $('.toggle-icon').click(function() {
                 $('.logout').toggleClass('hidden');
-            });
-
-        });
-
-        // dropdown perpustakaan
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const sidebarItem = dropdownToggle.closest('.sidebar-item');
-            const dropdownIcon = dropdownToggle.querySelector('.fa-angle-down');
-
-            dropdownToggle.addEventListener('click', function(event) {
-                event.preventDefault();
-                sidebarItem.classList.toggle('open');
-                if (sidebarItem.classList.contains('open')) {
-                    dropdownIcon.classList.replace('fa-angle-down', 'fa-angle-up');
-                } else {
-                    dropdownIcon.classList.replace('fa-angle-up', 'fa-angle-down');
-                }
             });
 
         });

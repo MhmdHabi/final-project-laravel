@@ -11,4 +11,9 @@ class PerpustakaanController extends Controller
     {
         return view('dashboard.mahasiswa.perpustakaan');
     }
+
+    public function pinjamBuku()
+    {
+        return view('dashboard.mahasiswa.pinjam_buku');
+    }
 }

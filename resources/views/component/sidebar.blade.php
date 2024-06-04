@@ -14,9 +14,24 @@
                         class="fa-solid fa-house mr-4 text-black"></i>Beranda</a>
             </li>
             <li class="sidebar-item">
+                <a href="{{ route('mahasiswa.presensi') }}"
+                    class="active text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-5 text-black"></i>Presensi</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('mahasiswa.presensi') }}"
+                    class="active text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-5 text-black"></i>Presensi Dosen</a>
+            </li>
+            <li class="sidebar-item">
                 <a href="{{ route('mahasiswa.profil') }}"
                     class="active text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
                         class="fa-solid fa-user mr-5 text-black"></i>Profil Mahasiswa</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('dosen.profil') }}"
+                    class="active text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-5 text-black"></i>Profil Dosen</a>
             </li>
             <li class="sidebar-item">
                 <a href=" {{ route('mahasiswa.krs') }}"
@@ -29,18 +44,14 @@
                         class="fa-solid fa-address-card mr-4 text-black"></i>KHS</a>
             </li>
             <li class="sidebar-item">
-                <a href="#"
-                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black dropdown-toggle"><i
-                        class="fa-solid fa-book-open mr-4 text-black"></i>Perpustakaan <i
-                        class="fa-solid fa-angle-down ml-2 ml-5"></i></a>
-                <ul class="dropdown-content pl-8 mt-2 space-y-2">
-                    <li><a href="" class="text-decoration-none text-black"><i
-                                class="fa-solid fa-book mr-3"></i>Data Buku</a></li>
-                    <li><a href="" class="text-decoration-none text-black"><i
-                                class="fa-solid fa-book mr-3"></i>Peminjaman Buku</a></li>
-                    <li><a href="" class="text-decoration-none text-black"><i
-                                class="fa-solid fa-book mr-3"></i>Pengembalian Buku</a></li>
-                </ul>
+                <a href="{{ route('mahasiswa.perpustakaan') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-book-open mr-4 text-black"></i>Perpustakaan</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('admin.konfirmasi_perpustakaan') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-book-open mr-4 text-black"></i>Konfirmasi Buku</a>
             </li>
             <li class="sidebar-item">
                 <a href="{{ route('mahasiswa.kontrak_matkul') }}"
@@ -48,14 +59,34 @@
                         class="fa-solid fa-book mr-5 text-black"></i>Kontrak Matkul</a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('mahasiswa.perpustakaan') }}"
+                <a href="{{ route('mahasiswa.transkip') }}"
                     class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
-                        class="fa-solid fa-book mr-5 text-black"></i>List Matkul</a>
+                        class="fa-solid fa-chart-pie mr-4 text-black"></i>Transkip</a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('mahasiswa.perpustakaan') }}"
+                <a href="{{ route('mahasiswa.tagihan') }}"
                     class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
                         class="fa-solid fa-money-bill-1 mr-4 text-black"></i>Tagihan</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('admin.data_mahasiswa') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-4 text-black"></i>Data Mahasiswa</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('admin.data_dosen') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-4 text-black"></i>Data Dosen</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('dosen.mengajar') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Jadwal Mengajar</a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('mahasiswa.tagihan') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-money-bill-1 mr-4 text-black"></i>Pembayaran</a>
             </li>
             <li class="sidebar-item">
                 <a href="{{ route('mahasiswa.perpustakaan') }}"
@@ -64,5 +95,4 @@
             </li>
         </ul>
     </div>
-    {{-- List menu side bar end --}}
 </div>
