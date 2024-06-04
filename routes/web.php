@@ -81,6 +81,16 @@ Route::prefix('dashboard')->group(function () {
             Route::get('/data_dosen/detail', [DosenController::class, 'detailDosen'])->name('admin.data_dosen.detail');
         });
 
+        Route::prefix('/')->group(function () {
+            Route::get('/data_admin', [AdminController::class, 'index'])->name('admin.data_admin');
+            Route::get('/data_admin/add', [AdminController::class, 'addAdmin'])->name('admin.data_admin.add');
+            Route::post('/data_admin/store', [AdminController::class, 'storeAdmin'])->name('admin.data_admin.store');
+            Route::get('/data_admin/edit/', [AdminController::class, 'editAdmin'])->name('admin.data_admin.edit');
+            Route::put('/data_admin/update/{id}', [AdminController::class, 'updateAdmin'])->name('admin.data_admin.update');
+            Route::post('/data_admin/delete/{id}', [AdminController::class, 'deleteAdmin'])->name('admin.data_admin.delete');
+            Route::get('/data_admin/detail', [AdminController::class, 'detailAdmin'])->name('admin.data_admin.detail');
+        });
+
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
     });

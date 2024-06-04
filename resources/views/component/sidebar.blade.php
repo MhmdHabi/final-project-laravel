@@ -74,6 +74,11 @@
                         class="fa-solid fa-user mr-4 text-black"></i>Data Mahasiswa</a>
             </li>
             <li class="sidebar-item">
+                <a href="{{ route('admin.data_admin') }}"
+                    class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
+                        class="fa-solid fa-user mr-4 text-black"></i>Data Admin</a>
+            </li>
+            <li class="sidebar-item">
                 <a href="{{ route('admin.data_dosen') }}"
                     class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black"><i
                         class="fa-solid fa-user mr-4 text-black"></i>Data Dosen</a>
