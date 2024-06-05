@@ -29,14 +29,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/Login/mahasiswa', [HomeController::class, 'loginMahasiswa'])->name('login.mahasiswa');
-Route::get('/login/dosen', [HomeController::class, 'loginDosen'])->name('login.dosen');
-Route::get('/login/admin', [HomeController::class, 'loginAdmin'])->name('login.admin');
+Route::get('/login/mahasiswa', [HomeController::class, 'formLoginMahasiswa'])->name('login.mahasiswa');
+Route::post('/login/mahasiswa', [HomeController::class, 'loginMahasiswa'])->name('post.login.mahasiswa');
+Route::get('/login/dosen', [HomeController::class, 'formLoginDosen'])->name('login.dosen');
+Route::post('/login/dosen', [HomeController::class, 'loginDosen'])->name('post.login.dosen');
+Route::get('/login/admin', [HomeController::class, 'formLoginAdmin'])->name('login.admin');
+Route::post('/login/admin', [HomeController::class, 'loginAdmin'])->name('post.login.admin');
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('siakad')->group(function () {
 
     //mahasiswa
-    Route::prefix('mahasiswa')->group(function () {
+    Route::prefix('mahasiswa')->middleware(['auth', 'role:mahasiswa'])->group(function () {
         Route::get('/beranda', [DashboardController::class, 'index'])->name('mahasiswa.beranda');
         Route::get('/presensi', [PresensiController::class, 'index'])->name('mahasiswa.presensi');
         Route::get('/profil', [ProfilController::class, 'index'])->name('mahasiswa.profil');
@@ -51,13 +54,13 @@ Route::prefix('dashboard')->group(function () {
     });
 
     // dosen
-    Route::prefix('dosen')->group(function () {
+    Route::prefix('dosen')->middleware(['auth', 'role:dosen'])->group(function () {
         Route::get('/jadwal_mengajar', [JadwalController::class, 'index'])->name('dosen.mengajar');
         Route::get('/profil', [BiodataController::class, 'index'])->name('dosen.profil');
     });
 
     // admin
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
 
         // CRUD Mahasiswa
         Route::prefix('/')->group(function () {
@@ -94,4 +97,6 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
     });
+
+    Route::post('logout', [HomeController::class, 'logout'])->name('logout');
 });
