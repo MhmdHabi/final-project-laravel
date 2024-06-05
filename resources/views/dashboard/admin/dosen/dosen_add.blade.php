@@ -10,58 +10,54 @@
 
         {{-- Form Tambah Dosen --}}
         <div class="px-5 pb-2">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.data_dosen.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="nidn" class="block md:text-md lg:text-lg font-bold mb-2">NIDN</label>
-                    <input type="text" name="nidn" id="nidn" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan NIDN">
+                    <input type="number" name="nidn" id="nidn" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan NIDN" value="{{ old('nidn') }}">
+                    @error('nidn')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block md:text-md lg:text-lg font-bold mb-2">Email</label>
                     <input type="email" name="email" id="email" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Email">
+                        placeholder="Masukkan Email" value="{{ old('email') }}">
+                    @error('email')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="nama" class="block md:text-md lg:text-lg font-bold mb-2">Nama</label>
-                    <input type="text" name="nama" id="nama" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Nama">
+                    <label for="name" class="block md:text-md lg:text-lg font-bold mb-2">Nama</label>
+                    <input type="text" name="name" id="name" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan Nama" value="{{ old('name') }}">
+                    @error('name')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="jabatan" class="block md:text-md lg:text-lg font-bold mb-2">Jabatan</label>
-                    <input type="text" name="jabatan" id="jabatan" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Jabatan">
-                </div>
-                <div class="mb-4">
-                    <label for="jenis_kelamin" class="block md:text-md lg:text-lg font-bold mb-2">Jenis Kelamin</label>
-                    <select name="jenis_kelamin" id="jenis_kelamin" class="w-full border-gray-700 rounded-md px-3 py-2">
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
+                    <label for="gender" class="block md:text-md lg:text-lg font-bold mb-2">Jenis Kelamin</label>
+                    <select name="gender" id="gender" class="w-full border-gray-700 rounded-md px-3 py-2">
+                        <option selected disabled>Pilih Gender</option>
+                        <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                        <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
                     </select>
-                </div>
-                <div class="mb-4">
-                    <label for="nomor_hp" class="block md:text-md lg:text-lg font-bold mb-2">Nomor HP</label>
-                    <input type="text" name="nomor_hp" id="nomor_hp" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Nomor HP">
-                </div>
-                <div class="mb-4">
-                    <label for="tanggal_lahir" class="block md:text-md lg:text-lg font-bold mb-2">Tanggal Lahir</label>
-                    <input type="date" name="tanggal_lahir" id="tanggal_lahir"
-                        class="w-full border-gray-700 rounded-md px-3 py-2">
-                </div>
-                <div class="mb-4">
-                    <label for="agama" class="block md:text-md lg:text-lg font-bold mb-2">Agama</label>
-                    <input type="text" name="agama" id="agama" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Agama">
+                    @error('gender')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="role" class="block md:text-md lg:text-lg font-bold mb-2">Role</label>
                     <select name="role" id="role" class="w-full border-gray-700 rounded-md px-3 py-2">
                         <option selected disabled>Pilih Role</option>
-                        <option value="Admin">Admin</option>
-                        <option value="Dosen">Dosen</option>
-                        <option value="Mahasiswa">Mahasiswa</option>
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>admin</option>
+                        <option value="dosen" {{ old('role') == 'dosen' ? 'selected' : '' }}>dosen</option>
+                        <option value="mahasiswa" {{ old('role') == 'mahasiswa' ? 'selected' : '' }}>mahasiswa</option>
                     </select>
+                    @error('role')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block md:text-md lg:text-lg font-bold mb-2">Password</label>
@@ -72,12 +68,15 @@
                             <i id="iconEye" class="fas fa-eye-slash"></i>
                         </span>
                     </div>
+                    @error('password')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="konfirmasi_password" class="block md:text-md lg:text-lg font-bold mb-2">Konfirmasi
+                    <label for="password_confirmation" class="block md:text-md lg:text-lg font-bold mb-2">Konfirmasi
                         Password</label>
                     <div class="relative">
-                        <input type="password" name="konfirmasi_password" id="konfirmasi_password"
+                        <input type="password" name="password_confirmation" id="password_confirmation"
                             class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Konfirmasi Password">
                         <span id="toggleKonfirmasiPassword"
                             class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">

@@ -8,14 +8,35 @@
             <h1 class="font-bold text-xl">FORM UPDATE ADMIN</h1>
         </div>
 
-        {{-- Form Tambah Mahasiswa --}}
+        {{-- Form Tambah admin --}}
         <div class="px-5 pb-2">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.data_admin.update', ['id' => $admin->id]) }}" method="POST"
+                enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="mb-4">
-                    <label for="nim" class="block md:text-md lg:text-lg font-bold mb-2">Username</label>
+                    <label for="username" class="block md:text-md lg:text-lg font-bold mb-2">Username</label>
                     <input type="text" name="username" id="username" class="w-full border-gray-700 rounded-md px-3 py-2"
-                        placeholder="Masukkan Username">
+                        placeholder="Masukkan Nama" value="{{ old('username', $admin->username) }}">
+                    @error('username')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block md:text-md lg:text-lg font-bold mb-2">Nama</label>
+                    <input type="text" name="name" id="name" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan Nama" value="{{ old('name', $admin->name) }}">
+                    @error('name')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block md:text-md lg:text-lg font-bold mb-2">Email</label>
+                    <input type="email" name="email" id="email" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan Email" value="{{ old('email', $admin->email) }}">
+                    @error('email')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label for="password" class="block md:text-md lg:text-lg font-bold mb-2">Password</label>
