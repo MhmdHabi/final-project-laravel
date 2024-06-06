@@ -24,11 +24,12 @@ class UserSeeder extends Seeder
             'email' => 'mahasiswa@example.com',
             'password' => Hash::make('mahasiswa'),
             'nim' => 987654321,
-            'gender' => 'L',
+            'gender' => 'Laki-Laki',
             'no_hp' => '08123456789',
             'tgl_lahir' => '2000-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Mahasiswa',
+            'status_kuliah' => 'Aktif',
         ]);
         $mahasiswa->assignRole($roleMahasiswa);
 
@@ -37,7 +38,7 @@ class UserSeeder extends Seeder
             'email' => 'dosen@example.com',
             'password' => Hash::make('dosen'),
             'nidn' => 123456789,
-            'gender' => 'L',
+            'gender' => 'Laki-Laki',
             'no_hp' => '08123456789',
             'tgl_lahir' => '1980-01-01',
             'agama' => 'Islam',
@@ -51,7 +52,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => Hash::make('admin'),
             'username' => 'admin',
-            'gender' => 'L',
+            'gender' => 'Laki-Laki',
             'no_hp' => '08123456789',
             'tgl_lahir' => '1990-01-01',
             'agama' => 'Islam',

@@ -8,11 +8,41 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">PERPUSTAKAAN</h1>
         </div>
+        <div class=" mb-3">
+            {{-- Notifikasi Success --}}
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M14.348 14.849l-4.849-4.849-4.849 4.849-1.414-1.414 4.849-4.849-4.849-4.849 1.414-1.414 4.849 4.849 4.849-4.849 1.414 1.414-4.849 4.849 4.849 4.849z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
+
+            {{-- Notifikasi Error --}}
+            @if (session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative " role="alert">
+                    {{ session('error') }}
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M14.348 14.849l-4.849-4.849-4.849 4.849-1.414-1.414 4.849-4.849-4.849-4.849 1.414-1.414 4.849 4.849 4.849-4.849 1.414 1.414-4.849 4.849 4.849 4.849z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
+        </div>
 
         {{-- Tabel peminjaman --}}
         <div class="px-5 pb-2">
             <div class="flex justify-end mb-1">
-                <a href="{{ route('mahasiswa.pinjam_buku') }}" class="border py-1 px-4 text-white bg-[#2e4765] rounded mr-2">
+                <a href="{{ route('mahasiswa.pinjam_buku') }}"
+                    class="border py-1 px-4 text-white bg-[#2e4765] rounded mr-2">
                     <i class="fa-solid fa-book mr-2 text-white"></i>Pinjam Buku
                 </a>
                 <a href="#" class="border py-1 px-4 text-white bg-[#2e4765] rounded">
@@ -32,15 +62,26 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Harry Potter and the
-                            Philosopher's Stone</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">2024-06-01</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">2024-06-15</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center"><span
-                                class=" border rounded bg-amber-300 py-2 px-3 font-semibold">Dipinjam</span></td>
-                    </tr>
+                    @foreach ($pinjam as $index => $minjam)
+                        <tr>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $minjam->buku->judul }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                {{ $minjam->waktu_peminjaman }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                {{ $minjam->waktu_pengembalian }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                                @if ($minjam->status == 'Menunggu')
+                                    <span class="border rounded bg-amber-300 py-2 px-3 font-semibold">Menunggu</span>
+                                @elseif ($minjam->status == 'Dipinjam')
+                                    <span
+                                        class="border rounded bg-blue-500 text-white py-2 px-3 font-semibold">Dipinjam</span>
+                                @else
+                                    <span class="border rounded bg-gray-400 py-2 px-3 font-semibold">Dikembalikan</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

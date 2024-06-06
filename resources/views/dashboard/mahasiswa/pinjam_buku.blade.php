@@ -7,6 +7,35 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">PERPUSTAKAAN</h1>
         </div>
+        <div class=" mb-3">
+            {{-- Notifikasi Success --}}
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M14.348 14.849l-4.849-4.849-4.849 4.849-1.414-1.414 4.849-4.849-4.849-4.849 1.414-1.414 4.849 4.849 4.849-4.849 1.414 1.414-4.849 4.849 4.849 4.849z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
+
+            {{-- Notifikasi Error --}}
+            @if (session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative " role="alert">
+                    {{ session('error') }}
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M14.348 14.849l-4.849-4.849-4.849 4.849-1.414-1.414 4.849-4.849-4.849-4.849 1.414-1.414 4.849 4.849 4.849-4.849 1.414 1.414-4.849 4.849 4.849 4.849z" />
+                        </svg>
+                    </span>
+                </div>
+            @endif
+        </div>
 
         {{-- Tabel Buku --}}
         <div class="px-5 pb-2">
@@ -27,24 +56,32 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Judul Buku 1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Pengarang 1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Deskripsi buku 1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">10</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
-                            <input type="checkbox" class="mr-2">Pilih
-                        </td>
-                    </tr>
+                    <form action="{{ route('post.mahasiswa.pinjam_buku') }}" method="POST">
+                        @csrf
+                        @foreach ($buku as $index => $item)
+                            <tr>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                                    {{ $index + 1 }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $item->judul }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $item->pengarang }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap"
+                                    style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ $item->deskripsi }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                                    {{ $item->stok }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                                    <input type="checkbox" name="buku_id[]" value="{{ $item->id }}" class="mr-2">Pilih
+                                </td>
+                            </tr>
+                        @endforeach
+                        {{-- Tombol Pinjam --}}
+                        <div class="flex justify-end mb-2">
+                            <button type="submit"
+                                class="bg-amber-400 font-bold py-2 px-4 rounded mt-5 ml-auto">Pinjam</button>
+                        </div>
+                    </form>
                 </tbody>
             </table>
-            {{-- Tombol Pinjam --}}
-            <div class="flex justify-end mt-5">
-                <button class="bg-amber-400 font-bold py-2 px-4 rounded">
-                    Pinjam
-                </button>
-            </div>
         </div>
     </div>
 @endsection

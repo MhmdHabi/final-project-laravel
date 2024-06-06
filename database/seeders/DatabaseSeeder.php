@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CreateRole::class);
         $this->call(UserSeeder::class);
+        $this->call(BookSeeder::class);
     }
 }
