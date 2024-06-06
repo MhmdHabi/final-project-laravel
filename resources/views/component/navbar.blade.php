@@ -8,9 +8,6 @@
         <div class="toggle-icon flex">
             <h3 class="font-bold lg:text-xl md:text-lg cursor-pointer">
                 {{ Auth::check() ? explode(' ', Auth::user()->name)[0] : 'Guest' }}
-                <h3 class="font-bold lg:text-xl md:text-lg cursor-pointer">
-                    {{ Auth::check() ? explode(' ', Auth::user()->name)[0] : 'Guest' }}
-                </h3>
             </h3>
             <a href="#" class="user-tie my-auto"><i class="fa-solid fa-user-tie fa-lg mx-3 text-gray-600"></i></a>
         </div>
