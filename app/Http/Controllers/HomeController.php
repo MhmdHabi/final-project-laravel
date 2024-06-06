@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Validator;
+
 class HomeController extends Controller
 {
     public function index()
@@ -44,7 +46,6 @@ class HomeController extends Controller
     public function loginDosen(Request $request)
     {
         $credentials = $request->only('nidn', 'password');
-
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             if ($user->hasRole('dosen')) {

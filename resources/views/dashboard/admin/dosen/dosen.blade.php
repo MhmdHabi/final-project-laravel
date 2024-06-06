@@ -46,7 +46,7 @@
         {{-- Tabel Data Dosen --}}
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
-                <table class="min-w-full divide-y divide-gray-200">
+                <table class="min-w-full divide-y divide-gray-200"  id="datatable">
                     <thead class="bg-gray-300">
                         <tr>
                             <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">No</th>

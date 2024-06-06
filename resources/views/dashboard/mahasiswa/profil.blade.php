@@ -35,7 +35,7 @@
         </div>
         <div class="lg:flex md:block w-full">
             @if ($mahasiswa->image)
-                <img id="profile-picture" src="{{ asset('storage/image_mahasiswa/' . $mahasiswa->image) }}"
+                <img id="profile-picture" src="{{ asset(str_replace('public/', 'storage/', $mahasiswa->image)) }}"
                     alt="Profile Picture" class="w-56 object-cover h-56 m-3">
             @else
                 <img id="profile-picture" src="{{ asset('asset/default_profile.png') }}" alt="Profile Picture"
@@ -50,12 +50,12 @@
                     <div class="list flex py-3 border-b ">
                         <label for="name" class="w-36">Nama</label>
                         <input type="text" name="name" id="name" value="{{ $mahasiswa->name }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b ">
                         <label for="nim" class="w-36">NIM</label>
                         <input type="text" name="nim" id="nim" value="{{ $mahasiswa->nim }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="email" class="w-36">Email</label>
@@ -64,12 +64,8 @@
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="gender" class="w-36">Jenis Kelamin</label>
-                        <select name="gender" id="gender" class="bg-gray-100 focus:outline-none">
-                            <option value="Laki-laki" {{ $mahasiswa->gender === 'Laki-laki' ? 'selected' : '' }}>Laki-laki
-                            </option>
-                            <option value="Perempuan" {{ $mahasiswa->gender === 'Perempuan' ? 'selected' : '' }}>Perempuan
-                            </option>
-                        </select>
+                        <input type="text" name="gender" id="gender" value="{{ $mahasiswa->gender }}"
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="no_hp" class="w-36">Nomor HP</label>
@@ -79,23 +75,17 @@
                     <div class="list flex py-3 border-b">
                         <label for="tgl_lahir" class="w-36">Tanggal Lahir</label>
                         <input type="date" name="tgl_lahir" id="tgl_lahir" value="{{ $mahasiswa->tgl_lahir }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="agama" class="w-36">Agama</label>
                         <input type="text" name="agama" id="agama" value="{{ $mahasiswa->agama }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="jurusan" class="w-36">Jurusan</label>
-                        <select name="jurusan" id="jurusan" class="bg-gray-100 focus:outline-none">
-                            <option value="Teknik Informatika"
-                                {{ $mahasiswa->jurusan === 'Teknik Informatika' ? 'selected' : '' }}>Teknik Informatika
-                            </option>
-                            <option value="Sistem Informasi"
-                                {{ $mahasiswa->jurusan === 'Sistem Informasi' ? 'selected' : '' }}>Sistem Informasi
-                            </option>
-                        </select>
+                        <input type="text" name="jurusan" id="jurusan" value="{{ $mahasiswa->jurusan }}"
+                            class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="alamat" class="w-36">Alamat</label>
@@ -105,7 +95,7 @@
                     <div class="list flex py-3 border-b">
                         <label for="status_kuliah" class="w-36">Status Kuliah</label>
                         <input type="text" name="status_kuliah" id="status_kuliah"
-                            value="{{ $mahasiswa->status_kuliah }}" class="bg-gray-100">
+                            value="{{ $mahasiswa->status_kuliah }}" class="bg-gray-100 focus:outline-none" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="image" class="w-36">Image</label>

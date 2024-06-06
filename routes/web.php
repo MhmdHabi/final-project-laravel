@@ -49,6 +49,7 @@ Route::prefix('siakad')->group(function () {
         Route::get('/transkip', [TranskipController::class, 'index'])->name('mahasiswa.transkip');
         Route::get('/perpustakaan', [PerpustakaanController::class, 'index'])->name('mahasiswa.perpustakaan');
         Route::get('/perpustakaan/pinjam_buku', [PerpustakaanController::class, 'pinjamBuku'])->name('mahasiswa.pinjam_buku');
+        Route::post('/perpustakaan/pinjam_buku', [PerpustakaanController::class, 'bukuDipinjam'])->name('post.mahasiswa.pinjam_buku');
         Route::get('/kontrak_matkul', [Kontrak_matkulController::class, 'index'])->name('mahasiswa.kontrak_matkul');
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
@@ -85,7 +86,7 @@ Route::prefix('siakad')->group(function () {
             Route::post('/data_dosen/delete/{id}', [DosenController::class, 'deleteDosen'])->name('admin.data_dosen.delete');
             Route::get('/data_dosen/detail/{id}', [DosenController::class, 'detailDosen'])->name('admin.data_dosen.detail');
         });
-
+        // CRUD Admin
         Route::prefix('/')->group(function () {
             Route::get('/data_admin', [AdminController::class, 'index'])->name('admin.data_admin');
             Route::get('/data_admin/add', [AdminController::class, 'addAdmin'])->name('admin.data_admin.add');
@@ -97,6 +98,7 @@ Route::prefix('siakad')->group(function () {
 
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
+        Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
     });
 
     Route::post('logout', [HomeController::class, 'logout'])->name('logout');

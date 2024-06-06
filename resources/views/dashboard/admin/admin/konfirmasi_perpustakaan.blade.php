@@ -25,24 +25,31 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">1</td>
-                            <td class="px-3 py-4 border border-gray-400">8883483434</td>
-                            <td class="px-3 py-4 border border-gray-400">Muhammad Habi</td>
-                            <td class="px-3 py-4 border border-gray-400">Laskar Pelangi</td>
-                            <td class="px-3 py-4 border border-gray-400">2024/05/23</td>
-                            <td class="px-3 py-4 border border-gray-400">2024/05/29</td>
-                            <td class="px-3 py-4 border border-gray-400">ACC</td>
-                            <td class="px-3 py-4 border border-gray-400">
-                                <form action="" method="POST">
-                                    @csrf
-                                    <button type="submit" name="action" value="approve"
-                                        class="px-4 py-2 bg-blue-500 text-white rounded-md mb-2 w-full">Konfirmasi</button>
-                                    <button type="submit" name="action" value="reject"
-                                        class="px-4 py-2 bg-red-500 text-white rounded-md w-full">Dikembalikan</button>
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach ($peminjaman as $index => $pinjam)
+                            <tr>
+                                <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->user->nim }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->user->name }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->buku->judul }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->waktu_peminjaman }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->waktu_pengembalian }}</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $pinjam->status }}</td>
+                                <td class="px-3 py-4 border border-gray-400">
+                                    <form action="{{ route('post.admin.konfirmasi_perpustakaan', ['id' => $pinjam->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit" name="action" value="approve"
+                                            class="px-4 py-2 bg-blue-500 text-white rounded-md mb-2 w-full">Konfirmasi</button>
+                                    </form>
+                                    <form action="{{ route('post.admin.konfirmasi_perpustakaan', ['id' => $pinjam->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        <button type="submit" name="action" value="reject"
+                                            class="px-4 py-2 bg-red-500 text-white rounded-md w-full">Dikembalikan</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

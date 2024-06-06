@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '2000-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Mahasiswa',
+            'status_kuliah' => 'Aktif',
         ]);
         $mahasiswa->assignRole($roleMahasiswa);
 
