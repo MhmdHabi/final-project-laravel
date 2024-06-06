@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Peminjaman;
 use App\Models\Pinjam;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -108,20 +107,25 @@ class AdminController extends Controller
 
     public function konfirmasiPerpustakaan()
     {
-        $peminjaman = Pinjam::all();
+        $peminjaman = Pinjam::orderBy('created_at', 'desc')->get();
 
         return view('dashboard.admin.admin.konfirmasi_perpustakaan', compact('peminjaman'));
     }
+
     public function konfirmasiBuku(Request $request, $id)
     {
         $pinjam = Pinjam::findOrFail($id);
 
         if ($request->action === 'approve') {
             $pinjam->status = 'Dipinjam';
-            $pinjam->buku->update(['status' => 'Dipinjam']);
+            $pinjam->buku->decrement('stok');
         } elseif ($request->action === 'reject') {
             $pinjam->status = 'Dikembalikan';
-            $pinjam->buku->update(['status' => 'Dikembalikan']);
+            $pinjam->buku->increment('stok');
+
+            $pinjam->delete();
+
+            return redirect()->route('admin.konfirmasi_perpustakaan')->with('success', 'Buku telah dikembalikan dan data peminjaman dihapus.');
         }
 
         $pinjam->save();

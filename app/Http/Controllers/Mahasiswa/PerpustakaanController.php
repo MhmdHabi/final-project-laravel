@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
-use App\Models\Peminjaman;
 use App\Models\Pinjam;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -16,7 +15,7 @@ class PerpustakaanController extends Controller
     {
         $mahasiswaId = Auth::id();
 
-        $pinjam = Pinjam::where('mahasiswa_id', $mahasiswaId)->get();
+        $pinjam = Pinjam::where('mahasiswa_id', $mahasiswaId)->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.mahasiswa.perpustakaan', compact('pinjam'));
     }
@@ -30,33 +29,36 @@ class PerpustakaanController extends Controller
 
     public function bukuDipinjam(Request $request)
     {
-        $bukuDipinjam = Pinjam::where('mahasiswa_id', auth()->id())->pluck('buku_id')->toArray();
+        $bukuSedangDipinjam = Pinjam::where('mahasiswa_id', auth()->id())
+            ->whereIn('status', ['Dipinjam', 'Menunggu'])
+            ->pluck('buku_id')
+            ->toArray();
 
         if ($request->has('buku_id') && !empty($request->buku_id)) {
             $waktuPeminjaman = Carbon::now();
             $waktuPengembalian = $waktuPeminjaman->copy()->addDays(3)->setTimezone('Asia/Jakarta');
 
             foreach ($request->buku_id as $bukuId) {
-                if (in_array($bukuId, $bukuDipinjam)) {
-                    return redirect()->back()->with('error', 'Anda sudah meminjam buku tersebut.');
+                if (in_array($bukuId, $bukuSedangDipinjam)) {
+                    return redirect()->back()->with('error', 'Anda sedang meminjam buku ini atau menunggu konfirmasi.');
                 }
 
-                Pinjam::create([
-                    'mahasiswa_id' => auth()->id(),
-                    'buku_id' => $bukuId,
-                    'status' => 'Menunggu',
-                    'waktu_peminjaman' => $waktuPeminjaman,
-                    'waktu_pengembalian' => $waktuPengembalian,
-                ]);
-
                 $buku = Buku::find($bukuId);
-                if ($buku) {
-                    $buku->stok--;
-                    $buku->save();
+
+                if ($buku && $buku->stok > 0) {
+                    Pinjam::create([
+                        'mahasiswa_id' => auth()->id(),
+                        'buku_id' => $bukuId,
+                        'status' => 'Menunggu',
+                        'waktu_peminjaman' => $waktuPeminjaman,
+                        'waktu_pengembalian' => $waktuPengembalian,
+                    ]);
+                } else {
+                    return redirect()->back()->with('error', "Stok buku '{$buku->judul}' sedang kosong.");
                 }
             }
 
-            return redirect()->route('mahasiswa.perpustakaan')->with('success', 'Peminjaman berhasil.');
+            return redirect()->route('mahasiswa.perpustakaan')->with('success', 'Peminjaman berhasil diajukan.');
         } else {
             return redirect()->back()->with('error', 'Pilih setidaknya satu buku untuk dipinjam.');
         }
