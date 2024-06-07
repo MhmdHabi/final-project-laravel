@@ -49,7 +49,7 @@ class DosenController extends Controller
 
         $user->assignRole($request->role);
 
-        return redirect()->route('admin.data_dosen')->with('success', 'Dosen added successfully');
+        return redirect()->route('admin.data_dosen')->with('success', 'Dosen berhasul ditambahkan');
     }
     public function editDosen($id)
     {

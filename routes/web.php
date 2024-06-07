@@ -59,6 +59,7 @@ Route::prefix('siakad')->group(function () {
     Route::prefix('dosen')->middleware(['auth', 'role:dosen'])->group(function () {
         Route::get('/jadwal_mengajar', [JadwalController::class, 'index'])->name('dosen.mengajar');
         Route::get('/profil', [BiodataController::class, 'index'])->name('dosen.profil');
+        Route::put('/profil/update/{id}', [BiodataController::class, 'profilUpdate'])->name('dosen.update');
     });
 
     // admin
@@ -97,6 +98,12 @@ Route::prefix('siakad')->group(function () {
         });
 
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
+        Route::get('/data_buku', [AdminController::class, 'dataBuku'])->name('admin.data_buku');
+        Route::get('/data_buku/add', [AdminController::class, 'bukuadd'])->name('admin.data_buku.add');
+        Route::post('/data_buku/store', [AdminController::class, 'bukuStore'])->name('admin.data_buku.store');
+        Route::get('/data_buku/edit/{id}', [AdminController::class, 'bukuEdit'])->name('admin.data_buku.edit');
+        Route::put('/data_buku/update/{id}', [AdminController::class, 'bukuUpdate'])->name('admin.data_buku.update');
+        Route::post('/data_buku/delete/{id}', [AdminController::class, 'bukuDelete'])->name('admin.data_buku.delete');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
         Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
     });

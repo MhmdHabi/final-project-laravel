@@ -67,6 +67,12 @@
                     </li>
                 @elseif (Auth::user()->roles[0]->name == 'dosen')
                     <li class="sidebar-item">
+                        <a href="{{ route('dosen.mengajar') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
+                            <i class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Jadwal Mengajar
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a href="{{ route('dosen.profil') }}"
                             class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
                             <i class="fa-solid fa-user mr-5 text-black"></i>Profil Dosen
@@ -75,12 +81,6 @@
                     <li class="sidebar-item">
                         <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
                             <i class="fa-solid fa-user mr-5 text-black"></i>Presensi Dosen
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ route('dosen.mengajar') }}"
-                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
-                            <i class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Jadwal Mengajar
                         </a>
                     </li>
                 @elseif (Auth::user()->roles[0]->name == 'admin')
@@ -105,6 +105,12 @@
                     <li class="sidebar-item">
                         <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
                             <i class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Pembayaran
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('admin.data_buku') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
+                            <i class="fa-solid fa-book-open mr-3 text-black"></i>Data Buku
                         </a>
                     </li>
                     <li class="sidebar-item">

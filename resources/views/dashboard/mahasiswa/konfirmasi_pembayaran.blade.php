@@ -10,7 +10,7 @@
 
         {{-- form konfirmasi pembayaran --}}
         <div class="px-5 pb-2 mt-7">
-            <form action="/konfirmasi-pembayaran" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <div class="col-span-1">
@@ -23,6 +23,7 @@
                         <label for="rekening_tujuan" class="block text-sm font-medium text-gray-700">Rekening Tujuan</label>
                         <select id="rekening_tujuan" name="rekening_tujuan"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option selected disabled>Pilih Bank</option>
                             <option value="BNI">BNI</option>
                             <option value="BRI">BRI</option>
                             <option value="Mandiri">Mandiri</option>
@@ -32,6 +33,7 @@
                         <label for="metode_transfer" class="block text-sm font-medium text-gray-700">Metode Transfer</label>
                         <select id="metode_transfer" name="metode_transfer"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option selected disabled>Pilih Pembayaran</option>
                             <option value="ATM">ATM</option>
                             <option value="E-Banking">E-Banking</option>
                         </select>
@@ -49,10 +51,41 @@
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             required>
                     </div>
+                    <div class="col-span-1">
+                        <label for="metode_transfer" class="block text-sm font-medium text-gray-700">Semester</label>
+                        <select id="metode_transfer" name="metode_transfer"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option selected disabled>Pilih Semester</option>
+                            <option value="ATM">1</option>
+                            <option value="E-Banking">2</option>
+                            <option value="E-Banking">3</option>
+                            <option value="E-Banking">4</option>
+                            <option value="E-Banking">5</option>
+                            <option value="E-Banking">6</option>
+                            <option value="E-Banking">7</option>
+                            <option value="E-Banking">8</option>
+                            <option value="E-Banking">9</option>
+                            <option value="E-Banking">10</option>
+                            <option value="E-Banking">11</option>
+                            <option value="E-Banking">12</option>
+                            <option value="E-Banking">13</option>
+                            <option value="E-Banking">14</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label for="metode_transfer" class="block text-sm font-medium text-gray-700">Tahun Ajaran</label>
+                        <select id="metode_transfer" name="metode_transfer"
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option selected disabled>Pilih Tahun Ajaran</option>
+                            <option value="ATM">Genap</option>
+                            <option value="E-Banking">Ganjil</option>
+                        </select>
+                    </div>
                     <div class="col-span-1 lg:col-span-3">
                         <label for="keterangan" class="block text-sm font-medium text-gray-700">Keterangan</label>
                         <textarea id="keterangan" name="keterangan" rows="3"
-                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            placeholder="Sertakan Nama dan Nim Anda"></textarea>
                     </div>
                     <div class="col-span-1 lg:col-span-3">
                         <label for="bukti_bayar" class="block text-sm font-medium text-gray-700">Upload Bukti Bayar</label>

@@ -7,7 +7,8 @@
         <div class=" mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <div id="successMessage"
+                    class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                     <span class="block sm:inline">{{ session('success') }}</span>
                     <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                         <svg class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +22,8 @@
 
             {{-- Notifikasi Error --}}
             @if (session('error'))
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative " role="alert">
+                <div id="successMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative "
+                    role="alert">
                     {{ session('error') }}
                     <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
                         <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
@@ -36,10 +38,10 @@
         <div class="lg:flex md:block w-full">
             @if ($mahasiswa->image)
                 <img id="profile-picture" src="{{ asset(str_replace('public/', 'storage/', $mahasiswa->image)) }}"
-                    alt="Profile Picture" class="w-56 object-cover h-56 m-3">
+                    alt="Profile Picture" class="w-52 object-cover h-56 m-3">
             @else
                 <img id="profile-picture" src="{{ asset('asset/default_profile.png') }}" alt="Profile Picture"
-                    class="w-56 object-cover h-56 m-3">
+                    class="w-52 object-cover h-56 m-3">
             @endif
 
             <div class="ml-1 w-full mt-3 mr-3">
@@ -50,7 +52,7 @@
                     <div class="list flex py-3 border-b ">
                         <label for="name" class="w-36">Nama</label>
                         <input type="text" name="name" id="name" value="{{ $mahasiswa->name }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none">
                     </div>
                     <div class="list flex py-3 border-b ">
                         <label for="nim" class="w-36">NIM</label>
@@ -101,6 +103,21 @@
                         <label for="image" class="w-36">Image</label>
                         <input type="file" name="image" id="image" class="bg-gray-100">
                     </div>
+                    <div class="mb-4 flex items-center py-3">
+                        <label for="password" class="block w-48">Change Password</label>
+                        <div class="relative w-full">
+                            <input type="password" name="password" id="password"
+                                class="w-full border-gray-700 rounded-md py-2 px-2 focus:outline-none"
+                                placeholder="Masukkan Password">
+                            <span id="togglePassword"
+                                class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                                <i id="iconEye" class="fas fa-eye-slash"></i>
+                            </span>
+                        </div>
+                        @error('password')
+                            <div class="text-red-500 text-sm">{{ $message }}</div>
+                        @enderror
+                    </div>
                     <div class="flex justify-end mt-2">
                         <button type="submit"
                             class="bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded">
@@ -111,4 +128,9 @@
             </div>
         </div>
     </div>
+
+    {{-- Jquery Start --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/togglePasswordAdd.js') }}"></script>
+    <script src="{{ asset('js/sessionTime.js') }}"></script>
 @endsection

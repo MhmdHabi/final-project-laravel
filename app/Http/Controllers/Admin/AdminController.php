@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Buku;
 use App\Models\Pinjam;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,6 +25,15 @@ class AdminController extends Controller
     public function addAdmin()
     {
         return view('dashboard.admin.admin.admin_add');
+    }
+    public function dataBuku()
+    {
+        $buku = Buku::all();
+        return view('dashboard.admin.admin.data_buku', compact('buku'));
+    }
+    public function bukuadd()
+    {
+        return view('dashboard.admin.admin.buku_add');
     }
 
     public function storeAdmin(Request $request)
@@ -51,7 +61,7 @@ class AdminController extends Controller
 
         $user->assignRole($request->role);
 
-        return redirect()->route('admin.data_admin')->with('success', 'Admin added successfully');
+        return redirect()->route('admin.data_admin')->with('success', 'Admin berhasil ditambahkan');
     }
     public function editAdmin($id)
     {
@@ -131,5 +141,69 @@ class AdminController extends Controller
         $pinjam->save();
 
         return redirect()->route('admin.konfirmasi_perpustakaan')->with('success', 'Konfirmasi berhasil dilakukan');
+    }
+
+    public function bukuStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'deskripsi' => 'required',
+            'stok' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.buku_add')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $buku = Buku::create([
+            'judul' => $request->judul,
+            'pengarang' => $request->pengarang,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+        ]);
+
+        return redirect()->route('admin.data_buku')->with('success', 'Buku berhasil ditambahkan');
+    }
+
+    public function bukuEdit($id)
+    {
+        $buku = Buku::findOrFail($id);
+        return view('dashboard.admin.admin.buku_edit', compact('buku'));
+    }
+
+    public function bukuUpdate(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'deskripsi' => 'required',
+            'stok' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $buuku = Buku::findOrFail($id);
+
+        $buuku->update([
+            'judul' => $request->judul,
+            'pengarang' => $request->pengarang,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+        ]);
+        return redirect()->route('admin.data_buku')->with('success', 'Data buku berhasil diperbarui');
+    }
+
+    public function bukuDelete($id)
+    {
+        $buku = Buku::findOrFail($id);
+
+        $buku->delete();
+
+        return redirect()->route('admin.data_buku')->with('success', 'Buku berhasil dihapus');
     }
 }
