@@ -70,7 +70,7 @@
                                 <td class="px-3 py-4 border border-gray-400">{{ $user->name }}</td>
                                 <td class="px-3 py-4 border border-gray-400">{{ $user->no_hp }}</td>
                                 <td class="px-3 py-4 border border-gray-400">{{ $user->jurusan }}</td>
-                                <td class="px-3 py-4 border border-gray-400">Aktif</td>
+                                <td class="px-3 py-4 border border-gray-400">{{ $user->status_kuliah }}</td>
                                 <td class="px-3 py-4 border border-gray-400">
                                     <a href="{{ route('admin.data_mahasiswa.edit', ['id' => $user->id]) }}"><button
                                             class="px-4 py-2 bg-blue-500 text-white rounded-md w-full mb-2">Edit</button></a>

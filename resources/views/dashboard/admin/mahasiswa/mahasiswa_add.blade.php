@@ -48,6 +48,22 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="tgl_lahir" class="block md:text-md lg:text-lg font-bold mb-2">Tanggal Lahir</label>
+                    <input type="date" name="tgl_lahir" id="tgl_lahir"
+                        class="w-full border-gray-700 rounded-md px-3 py-2" value="{{ old('tgl_lahir') }}">
+                    @error('tgl_lahir')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="agama" class="block md:text-md lg:text-lg font-bold mb-2">Agama</label>
+                    <input type="text" name="agama" id="agama" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan Agama" value="{{ old('agama') }}">
+                    @error('agama')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="jurusan" class="block md:text-md lg:text-lg font-bold mb-2">Jurusan</label>
                     <select name="jurusan" id="jurusan" class="w-full border-gray-700 rounded-md px-3 py-2">
                         <option selected disabled>Pilih Jurusan</option>
@@ -61,12 +77,21 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="status_kuliah" class="block md:text-md lg:text-lg font-bold mb-2">Status Kuliah</label>
+                    <input type="text" name="status_kuliah" id="status_kuliah"
+                        class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Status Kuliah"
+                        value="{{ old('status_kuliah', 'Aktif') }}">
+                    @error('status_kuliah')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="role" class="block md:text-md lg:text-lg font-bold mb-2">Role</label>
                     <select name="role" id="role" class="w-full border-gray-700 rounded-md px-3 py-2">
                         <option selected disabled>Pilih Role</option>
-                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>admin</option>
-                        <option value="dosen" {{ old('role') == 'dosen' ? 'selected' : '' }}>dosen</option>
-                        <option value="mahasiswa" {{ old('role') == 'mahasiswa' ? 'selected' : '' }}>mahasiswa</option>
+                        <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                        <option value="dosen" {{ old('role') == 'dosen' ? 'selected' : '' }}>Dosen</option>
+                        <option value="mahasiswa" {{ old('role') == 'mahasiswa' ? 'selected' : '' }}>Mahasiswa</option>
                     </select>
                     @error('role')
                         <div class="text-red-500 text-sm">{{ $message }}</div>
@@ -77,7 +102,8 @@
                     <div class="relative">
                         <input type="password" name="password" id="password"
                             class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Password">
-                        <span id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+                        <span id="togglePassword"
+                            class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
                             <i id="iconEye" class="fas fa-eye-slash"></i>
                         </span>
                     </div>
@@ -90,7 +116,8 @@
                         Password</label>
                     <div class="relative">
                         <input type="password" name="password_confirmation" id="password_confirmation"
-                            class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Konfirmasi Password">
+                            class="w-full border-gray-700 rounded-md px-3 py-2"
+                            placeholder="Masukkan Konfirmasi Password">
                         <span id="toggleKonfirmasiPassword"
                             class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
                             <i id="iconEyeKonfirmasi" class="fas fa-eye-slash"></i>

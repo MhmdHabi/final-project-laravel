@@ -13,7 +13,7 @@ class DosenController extends Controller
 {
     public function index()
     {
-        $dosen = User::whereNotNull('nidn')->get();
+        $dosen = User::whereNotNull('nidn')->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.admin.dosen.dosen', compact('dosen'));
     }
@@ -49,7 +49,7 @@ class DosenController extends Controller
 
         $user->assignRole($request->role);
 
-        return redirect()->route('admin.data_dosen')->with('success', 'Dosen added successfully');
+        return redirect()->route('admin.data_dosen')->with('success', 'Dosen berhasil ditambahkan');
     }
     public function editDosen($id)
     {

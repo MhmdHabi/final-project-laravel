@@ -14,7 +14,7 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswa = User::whereNotNull('nim')->get();
+        $mahasiswa = User::whereNotNull('nim')->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.admin.mahasiswa.mahasiswa', compact('mahasiswa'));
     }
@@ -31,7 +31,10 @@ class MahasiswaController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
             'gender' => 'required',
+            'tgl_lahir' => 'required|date',
+            'agama' => 'required|string',
             'jurusan' => 'required|string',
+            'status_kuliah' => 'required',
             'role' => 'required|in:mahasiswa,dosen,admin',
         ]);
 
@@ -47,7 +50,10 @@ class MahasiswaController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'gender' => $request->gender,
+            'tgl_lahir' => $request->tgl_lahir,
+            'agama' => $request->agama,
             'jurusan' => $request->jurusan,
+            'status_kuliah' => $request->status_kuliah,
         ]);
 
         $user->assignRole($request->role);
@@ -74,6 +80,7 @@ class MahasiswaController extends Controller
             'agama' => 'required|string',
             'alamat' => 'required|string',
             'jurusan' => 'required|string',
+            'status_kuliah' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -103,6 +110,7 @@ class MahasiswaController extends Controller
             'agama' => $request->agama,
             'alamat' => $request->alamat,
             'jurusan' => $request->jurusan,
+            'status_kuliah' => $request->status_kuliah,
             'password' => $request->password ? Hash::make($request->password) : $mahasiswa->password,
         ]);
 

@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $admins = User::whereHas('roles', function ($query) {
+        $admins = User::orderBy('created_at', 'desc')->whereHas('roles', function ($query) {
             $query->where('name', 'admin');
         })->get();
 
@@ -51,7 +51,7 @@ class AdminController extends Controller
 
         $user->assignRole($request->role);
 
-        return redirect()->route('admin.data_admin')->with('success', 'Admin added successfully');
+        return redirect()->route('admin.data_admin')->with('success', 'Admin berhasil ditambahkan');
     }
 
     public function editAdmin($id)
