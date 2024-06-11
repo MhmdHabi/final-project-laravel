@@ -83,6 +83,12 @@
                             <i class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Jadwal Mengajar
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('dosen.konfirmasi_krs') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
+                            <i class="fa-solid fa-user-check mr-3 text-black"></i>Konfirmasi KRS
+                        </a>
+                    </li>
                 @elseif (Auth::user()->roles[0]->name == 'admin')
                     <li class="sidebar-item">
                         <a href="{{ route('admin.data_mahasiswa') }}"
@@ -111,6 +117,12 @@
                         <a href="{{ route('admin.konfirmasi_perpustakaan') }}"
                             class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
                             <i class="fa-solid fa-book-open mr-3 text-black"></i>Konfirmasi Buku
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('admin.pembukaan_matkul') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
+                            <i class="fa-solid fa-book-open-reader mr-3 text-black"></i>Aktifasi KRS
                         </a>
                     </li>
                 @endif

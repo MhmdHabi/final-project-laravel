@@ -27,8 +27,6 @@
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
                             SKS</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Status</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
                             Kelas</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
                             Ruangan</th>
@@ -36,39 +34,49 @@
                             Jadwal</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
                             Dosen</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
+                            Status</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
+                    @php
+                        $totalSKS = 0;
+                    @endphp
+                    @foreach ($krs as $index => $krsan)
+                        <tr>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kode_mk }}
+                            </td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->nama_mk }}
+                            </td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->sks }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kelas }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->ruangan }}
+                            </td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                {{ date('l, H:i', strtotime($krsan->matkul->jadwal)) }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->dosen->name }}
+                            </td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                @if ($krsan->status === 'Menunggu')
+                                    <span class="px-2 py-1 bg-amber-500 text-white rounded-md">{{ $krsan->status }}</span>
+                                @elseif ($krsan->status === 'Disetujui')
+                                    <span class="px-2 py-1 bg-green-500 text-white rounded-md">{{ $krsan->status }}</span>
+                                @else
+                                    <span class="px-2 py-1 bg-red-500 text-white rounded-md">{{ $krsan->status }}</span>
+                                @endif
+                            </td>
+                        </tr>
+                        @php
+                            $totalSKS += $krsan->matkul->sks;
+                        @endphp
+                    @endforeach
                     <tr>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">1</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">MK001</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Matematika</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">3</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Wajib</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">A</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">101</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Senin, 08:00-10:00</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Dr. John Doe</td>
-                    </tr>
-                    <tr>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">2</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">MK002</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Fisika</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">4</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Pilihan</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">B</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">102</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Selasa, 10:00-12:00</td>
-                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Dr. Jane Smith</td>
-                    </tr>
-                    <tr>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">Total SKS diambil
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">Total SKS
+                            diambil
                         </td>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold">22/24</td>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">IP Semester
-                            Sebelumnya
-                            : 4.00
-                        </td>
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">
+                            {{ $totalSKS }}/24</td>
                     </tr>
                 </tbody>
             </table>

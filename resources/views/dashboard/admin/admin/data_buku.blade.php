@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('judul', 'Peminjaman Buku')
+@section('judul', 'Data Buku')
 
 @section('content')
     <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 py-5 rounded-md">
         <div class="flex mb-3 justify-center">
-            <h1 class="font-bold text-xl">PERPUSTAKAAN</h1>
+            <h1 class="font-bold text-xl">DATA BUKU</h1>
         </div>
-        <div class=" mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div id="successMessage"
@@ -43,43 +43,44 @@
         <div class="px-5 pb-2">
             {{-- Tombol Pinjam --}}
             <div class="flex justify-beetwen mb-2">
-                <a href="{{ route('mahasiswa.perpustakaan') }}"
-                    class="border py-2 px-4 text-white bg-amber-500 rounded my-auto mb-0">
-                    <i class="fa-solid fa-angle-left mr-2"></i>Kembali</a>
-                <button type="submit" class="bg-amber-400 font-bold py-2 px-4 rounded mt-5 ml-auto">Pinjam</button>
+                <a href="{{ route('admin.data_buku.add') }}"
+                    class="border py-2 px-4 text-white bg-amber-500 rounded-lg my-auto mb-0">
+                    Tambah Buku</a>
             </div>
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full divide-y divide-gray-200" id="datatable">
                 <thead class="bg-gray-300">
                     <tr>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">No</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Judul</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Pengarang</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Deskripsi</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Stok</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Pilih Buku
-                        </th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Deskripsi</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <form action="{{ route('post.mahasiswa.pinjam_buku') }}" method="POST">
-                        @csrf
-                        @foreach ($buku as $index => $item)
-                            <tr>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
-                                    {{ $index + 1 }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $item->judul }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $item->pengarang }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap"
-                                    style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">
-                                    {{ $item->deskripsi }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
-                                    {{ $item->stok }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
-                                    <input type="checkbox" name="buku_id[]" value="{{ $item->id }}" class="mr-2">Pilih
-                                </td>
-                            </tr>
-                        @endforeach
-                    </form>
+                    @foreach ($buku as $item)
+                        <tr>
+                            <td class="px-3 py-4 border border-gray-400 text-center">
+                                {{ $loop->iteration }}</td>
+                            <td class="px-3 py-4 border border-gray-400">{{ $item->judul }}</td>
+                            <td class="px-3 py-4 border border-gray-400">{{ $item->pengarang }}</td>
+                            <td class="px-3 py-4 border border-gray-400">{{ $item->stok }}
+                            </td>
+                            <td class="px-3 py-4 border border-gray-400 text-justify">
+                                {{ $item->deskripsi }}
+                            </td>
+                            <td class="px-2 py-4 border border-gray-400">
+                                <a href="{{ route('admin.data_buku.edit', ['id' => $item->id]) }}"><button
+                                        class="px-4 py-2 bg-blue-500 text-white rounded-md w-full mb-2">Edit</button></a>
+                                <form action="{{ route('admin.data_buku.delete', ['id' => $item->id]) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="px-4 py-2 bg-red-500 text-white rounded-md w-full">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

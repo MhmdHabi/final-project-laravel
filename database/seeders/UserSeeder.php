@@ -19,23 +19,9 @@ class UserSeeder extends Seeder
         $roleDosen = Role::firstOrCreate(['name' => 'dosen']);
         $roleAdmin = Role::firstOrCreate(['name' => 'admin']);
 
-        $mahasiswa = User::create([
-            'name' => 'Sisiswa',
-            'email' => 'mahasiswa@example.com',
-            'password' => Hash::make('mahasiswa'),
-            'nim' => 987654321,
-            'gender' => 'Laki-Laki',
-            'no_hp' => '08123456789',
-            'tgl_lahir' => '2000-01-01',
-            'agama' => 'Islam',
-            'alamat' => 'Alamat Mahasiswa',
-            'status_kuliah' => 'Aktif',
-        ]);
-        $mahasiswa->assignRole($roleMahasiswa);
-
-        $dosen = User::create([
-            'name' => 'Pak Dosen',
-            'email' => 'dosen@example.com',
+        $dosen1 = User::create([
+            'name' => 'Pak Dosen 1',
+            'email' => 'dosen1@example.com',
             'password' => Hash::make('dosen'),
             'nidn' => 123456789,
             'gender' => 'Laki-Laki',
@@ -43,9 +29,128 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '1980-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Dosen',
-            'jabatan' => 'Dosen',
+            'jabatan' => 'Dosen SI',
         ]);
-        $dosen->assignRole($roleDosen);
+        $dosen1->assignRole($roleDosen);
+
+        $dosen2 = User::create([
+            'name' => 'Pak Dosen 2',
+            'email' => 'dosen2@example.com',
+            'password' => Hash::make('dosen'),
+            'nidn' => 123456788,
+            'gender' => 'Laki-Laki',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '1980-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Dosen',
+            'jabatan' => 'Dosen TI',
+        ]);
+        $dosen2->assignRole($roleDosen);
+
+        $dosen3 = User::create([
+            'name' => 'Bu Dosen 3',
+            'email' => 'dosen3@example.com',
+            'password' => Hash::make('dosen'),
+            'nidn' => 123456787,
+            'gender' => 'Perempuan',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '1980-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Dosen',
+            'jabatan' => 'Dosen TI',
+        ]);
+        $dosen3->assignRole($roleDosen);
+
+        $mahasiswa1 = User::create([
+            'name' => 'Sisiswa 1',
+            'email' => 'mahasiswa1@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654321,
+            'gender' => 'Laki-Laki',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Sistem Informasi',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa1->assignRole($roleMahasiswa);
+
+        $mahasiswa2 = User::create([
+            'name' => 'Sisiswa 2',
+            'email' => 'mahasiswa2@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654322,
+            'gender' => 'Perempuan',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Teknik Informatika',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa2->assignRole($roleMahasiswa);
+
+        $mahasiswa3 = User::create([
+            'name' => 'Sisiswa 3',
+            'email' => 'mahasiswa3@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654323,
+            'gender' => 'Laki-Laki',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Teknik Informatika',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa3->assignRole($roleMahasiswa);
+
+        $mahasiswa4 = User::create([
+            'name' => 'Sisiswa 4',
+            'email' => 'mahasiswa4@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654324,
+            'gender' => 'Perempuan',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Sistem Informasi',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa4->assignRole($roleMahasiswa);
+
+        $mahasiswa5 = User::create([
+            'name' => 'Sisiswa 5',
+            'email' => 'mahasiswa5@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654325,
+            'gender' => 'Laki-Laki',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Sistem Informasi',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa5->assignRole($roleMahasiswa);
+
+        $mahasiswa6 = User::create([
+            'name' => 'Sisiswa 6',
+            'email' => 'mahasiswa6@example.com',
+            'password' => Hash::make('mahasiswa'),
+            'nim' => 987654326,
+            'gender' => 'Laki-Laki',
+            'no_hp' => '08123456789',
+            'tgl_lahir' => '2000-01-01',
+            'agama' => 'Islam',
+            'alamat' => 'Alamat Mahasiswa',
+            'jurusan' => 'Teknik Informatika',
+            'status_kuliah' => 'Aktif',
+        ]);
+        $mahasiswa6->assignRole($roleMahasiswa);
+
 
         $admin = User::create([
             'name' => 'SiAdmin',

@@ -57,4 +57,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function krs()
+    {
+        return $this->hasMany(Krs::class, 'mahasiswa_id');
+    }
+
+    public function dosenPA()
+    {
+        return $this->hasOne(DosenPA::class, 'mahasiswa_id');
+    }
 }

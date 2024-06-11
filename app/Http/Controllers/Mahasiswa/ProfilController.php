@@ -22,16 +22,10 @@ class ProfilController extends Controller
     public function profilUpdate(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nim' => 'required|integer|unique:users,nim,' . $id,
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'name' => 'nullable|string|max:255',
             'password' => 'nullable|min:8',
-            'gender' => 'required|string',
-            'no_hp' => 'required|string|max:15',
-            'tgl_lahir' => 'required|date',
-            'agama' => 'required|string',
-            'alamat' => 'required|string',
-            'jurusan' => 'required|string',
+            'no_hp' => 'nullable|string|max:15',
+            'alamat' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -51,15 +45,9 @@ class ProfilController extends Controller
         }
 
         $mahasiswa->update([
-            'nim' => $request->nim,
             'name' => $request->name,
-            'email' => $request->email,
-            'gender' => $request->gender,
             'no_hp' => $request->no_hp,
-            'tgl_lahir' => $request->tgl_lahir,
-            'agama' => $request->agama,
             'alamat' => $request->alamat,
-            'jurusan' => $request->jurusan,
             'password' => $request->password ? Hash::make($request->password) : $mahasiswa->password,
         ]);
 

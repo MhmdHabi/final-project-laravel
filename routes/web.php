@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Dosen\BiodataController;
 use App\Http\Controllers\Dosen\JadwalController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Dosen\KonfirmasiMatkulController;
 use App\Http\Controllers\Mahasiswa\DashboardController;
 use App\Http\Controllers\Mahasiswa\KhsController;
 use App\Http\Controllers\Mahasiswa\KrsController;
@@ -50,7 +51,8 @@ Route::prefix('siakad')->group(function () {
         Route::get('/perpustakaan', [PerpustakaanController::class, 'index'])->name('mahasiswa.perpustakaan');
         Route::get('/perpustakaan/pinjam_buku', [PerpustakaanController::class, 'pinjamBuku'])->name('mahasiswa.pinjam_buku');
         Route::post('/perpustakaan/pinjam_buku', [PerpustakaanController::class, 'bukuDipinjam'])->name('post.mahasiswa.pinjam_buku');
-        Route::get('/kontrak_matkul', [Kontrak_matkulController::class, 'index'])->name('mahasiswa.kontrak_matkul');
+        Route::get('/kontrak_matkul', [Kontrak_matkulController::class, 'formMatkul'])->name('mahasiswa.kontrak_matkul');
+        Route::post('/submit/krs', [Kontrak_matkulController::class, 'submitKRS'])->name('post.mahasiswa.krs');
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
     });
@@ -59,6 +61,10 @@ Route::prefix('siakad')->group(function () {
     Route::prefix('dosen')->middleware(['auth', 'role:dosen'])->group(function () {
         Route::get('/jadwal_mengajar', [JadwalController::class, 'index'])->name('dosen.mengajar');
         Route::get('/profil', [BiodataController::class, 'index'])->name('dosen.profil');
+        Route::get('/konfirmasi_krs', [KonfirmasiMatkulController::class, 'index'])->name('dosen.konfirmasi_krs');
+        Route::get('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'konfirmasi'])->name('dosen.konfirmasi_krs_detail');
+        Route::post('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'update'])->name('post.dosen.konfirmasi_krs');
+        Route::delete('/krs/{id}', [KonfirmasiMatkulController::class, 'deleteKrs'])->name('hapus.krs');
     });
 
     // admin
@@ -99,6 +105,8 @@ Route::prefix('siakad')->group(function () {
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
         Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
+        Route::get('/pembukaan_matkul', [AdminController::class, 'pembukaanMatkul'])->name('admin.pembukaan_matkul');
+        Route::get('/toggle_aktif', [AdminController::class, 'toggle'])->name('admin.toggle_aktif');
     });
 
     Route::post('logout', [HomeController::class, 'logout'])->name('logout');

@@ -83,6 +83,9 @@
                             <i id="iconEyeKonfirmasi" class="fas fa-eye-slash"></i>
                         </span>
                     </div>
+                    @error('password_confirmation')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="mt-6 flex">
                     <a href="{{ route('admin.data_dosen') }}"
