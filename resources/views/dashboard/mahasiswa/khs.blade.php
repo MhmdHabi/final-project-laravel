@@ -8,7 +8,8 @@
             <h1 class="font-bold text-xl">KARTU HASIL STUDI</h1>
         </div>
 
-        {{-- Tabel KHS --}}
+        {{-- Tabel KHS --}}   
+            
         <div class="overflow-x-auto px-5 pb-2">
             <table class="min-w-full border-collapse border border-gray-200">
                 <thead class="bg-gray-300">

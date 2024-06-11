@@ -74,7 +74,8 @@ Route::prefix('siakad')->group(function () {
             Route::put('/data_mahasiswa/update/{id}', [MahasiswaController::class, 'updateMahasiswa'])->name('admin.data_mahasiswa.update');
             Route::post('/data_mahasiswa/delete/{id}', [MahasiswaController::class, 'deleteMahasiswa'])->name('admin.data_mahasiswa.delete');
             Route::get('/data_mahasiswa/detail/{id}', [MahasiswaController::class, 'detailMahasiswa'])->name('admin.data_mahasiswa.detail');
-            Route::get('/datatable_mahasiswa', [MahasiswaController::class, 'getDatatable'])->name('admin.mahasiswa.get_datatable');
+            Route::get('/datatable_mahasiswa', [MahasiswaController::class, 'getdatatable'])->name('admin.mahasiswa.get_datatable');
+            
         });
 
         // CRUD Dosen

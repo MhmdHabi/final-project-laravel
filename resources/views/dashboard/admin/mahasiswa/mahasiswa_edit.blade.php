@@ -116,6 +116,17 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="role" class="block md:text-md lg:text-lg font-bold mb-2">Status Kuliah</label>
+                    <select name="status_kuliah" id="status" class="w-full border-gray-700 rounded-md px-3 py-2">
+                        <option selected disabled>Pilih Status</option>
+                        <option value="aktif" {{ old('role') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                        <option value="non-aktif" {{ old('role') == 'Non-Aktif' ? 'selected' : '' }}>Non-Aktif</option>
+                    </select>
+                    @error('status')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="password" class="block md:text-md lg:text-lg font-bold mb-2">Password</label>
                     <div class="relative">
                         <input type="password" name="password" id="password"
