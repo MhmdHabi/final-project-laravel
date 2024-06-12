@@ -7,7 +7,6 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">FORM TAMBAH MAHASISWA</h1>
         </div>
-
         {{-- Form Tambah Mahasiswa --}}
         <div class="px-5 pb-2">
             <form action="{{ route('admin.data_mahasiswa.store') }}" method="POST" enctype="multipart/form-data">
@@ -98,6 +97,17 @@
                     @enderror
                 </div>
                 <div class="mb-4">
+                    <label for="role" class="block md:text-md lg:text-lg font-bold mb-2">Status Kuliah</label>
+                    <select name="status_kuliah" id="status" class="w-full border-gray-700 rounded-md px-3 py-2">
+                        <option selected disabled>Pilih Status</option>
+                        <option value="aktif" {{ old('role') == 'Aktif' ? 'selected' : '' }}>Aktif</option>
+                        <option value="non-aktif" {{ old('role') == 'Non-Aktif' ? 'selected' : '' }}>Non-Aktif</option>
+                    </select>
+                    @error('status')
+                        <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-4">
                     <label for="password" class="block md:text-md lg:text-lg font-bold mb-2">Password</label>
                     <div class="relative">
                         <input type="password" name="password" id="password"
@@ -135,7 +145,6 @@
             </form>
         </div>
     </div>
-
     {{-- Jquery Start --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/togglePasswordAdd.js') }}"></script>

@@ -9,67 +9,49 @@
         </div>
 
         {{-- Tabel KHS --}}
-        @if ($status && $status->status === 'Disetujui')
-            <div class="overflow-x-auto px-5 pb-2">
-                <table class="min-w-full border-collapse border border-gray-200">
-                    <thead class="bg-gray-300">
-                        <tr>
-                            <th class=" px-3 py-3 border border-gray-400 text-left text-md text black">
-                                No</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                Kode MK</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                Nama Matakuliah</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                SKS</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                Dosen</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                Grade</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
-                                Mutu</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @php
-                            $totalSKS = 0;
-                        @endphp
-                        @foreach ($khs as $index => $khsan)
-                            <tr>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->kode_mk }}
-                                </td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->nama_mk }}
-                                </td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->sks }}
-                                </td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
-                                    {{ $khsan->matkul->dosen->name }}
-                                </td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">A</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->nilai }}
-                                </td>
-                            </tr>
-                            @php
-                                $totalSKS += $khsan->matkul->sks;
-                            @endphp
-                        @endforeach
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="4"><a
-                                    href="#" class="border py-2 px-3 text-white bg-[#2e4765] rounded"><i
-                                        class="fa-solid fa-print mr-2  text-white"></i>Cetak</a>
-                            </td>
-                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold">{{ $totalSKS }} SKS</td>
-                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">IP
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        @else
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                Kontrak Matkul belum disetujui.
-            </div>
-        @endif
+
+        <div class="overflow-x-auto px-5 pb-2">
+            <table class="min-w-full border-collapse border border-gray-200">
+                <thead class="bg-gray-300">
+                    <tr>
+                        <th class=" px-3 py-3 border border-gray-400 text-left text-md text black">
+                            No</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            Kode MK</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            Nama Matakuliah</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            Status</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            SKS</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            Grade</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text black">
+                            Nilai Angka</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">1</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">MK001</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">Matematika</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">B</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">3.00</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">A</td>
+                        <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">101</td>
+                    </tr>
+
+                    <tr>
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="4"><a href="#"
+                                class="border py-2 px-3 text-white bg-[#2e4765] rounded"><i
+                                    class="fa-solid fa-print mr-2  text-white"></i>Cetak</a>
+                        </td>
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold">t sks</td>
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">IP
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

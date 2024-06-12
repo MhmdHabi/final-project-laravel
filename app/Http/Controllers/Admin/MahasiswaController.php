@@ -36,9 +36,11 @@ class MahasiswaController extends Controller
             'jurusan' => 'required|string',
             'status_kuliah' => 'required',
             'role' => 'required|in:mahasiswa,dosen,admin',
+            'status_kuliah' => 'required|in:aktif,non-aktif',
         ]);
 
         if ($validator->fails()) {
+            dd($validator->errors());
             return redirect()->route('admin.data_mahasiswa.add')
                 ->withErrors($validator)
                 ->withInput();
@@ -80,8 +82,8 @@ class MahasiswaController extends Controller
             'agama' => 'required|string',
             'alamat' => 'required|string',
             'jurusan' => 'required|string',
-            'status_kuliah' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status_kuliah' => 'required|in:aktif,non-aktif',
         ]);
 
         if ($validator->fails()) {
@@ -130,9 +132,29 @@ class MahasiswaController extends Controller
         if ($mahasiswa->image && Storage::exists($mahasiswa->image)) {
             Storage::delete($mahasiswa->image);
         }
-
         $mahasiswa->delete();
-
         return redirect()->route('admin.data_mahasiswa')->with('success', 'Mahasiswa berhasil dihapus');
+    }
+    public function getdatatable(Request $request)
+    {
+        $query = User::query()->whereNotNull('nim');
+        if ($request->filled('status_kuliah')) {
+            $query->where('status_kuliah', $request->status_kuliah);
+        }
+        return DataTables::of($query)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) {
+                $editUrl = route('admin.data_mahasiswa.edit', ['id' => $row->id]);
+                $detailUrl = route('admin.data_mahasiswa.detail', ['id' => $row->id]);
+                $deleteUrl = route('admin.data_mahasiswa.delete', ['id' => $row->id]);
+                return ' <a href="' . $editUrl . '"><button class="px-4 py-2 bg-blue-500 text-white rounded-md w-full mb-2">Edit</button></a>
+                    <a href="' . $detailUrl . '"><button class="px-4 py-2 bg-amber-500 text-white rounded-md w-full mb-2">Detail</button></a>
+                    <form action="' . $deleteUrl . '" method="POST" style="display:inline;">
+                        ' . csrf_field() . '
+                        <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded-md w-full">Delete</button>
+                    </form>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }
