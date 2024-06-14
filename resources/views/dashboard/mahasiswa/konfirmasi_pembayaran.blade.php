@@ -3,14 +3,14 @@
 @section('judul', 'Konfirmasi Pembayaran')
 
 @section('content')
-    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 py-5 rounded-md ">
+    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 py-5 rounded-md">
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold md:text-xl sm:text-lg">FORM KONFIRMASI PEMBAYARAN</h1>
         </div>
 
         {{-- form konfirmasi pembayaran --}}
         <div class="px-5 pb-2 mt-7">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('mahasiswa.konfirmasi_pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <div class="col-span-1">
@@ -52,38 +52,29 @@
                             required>
                     </div>
                     <div class="col-span-1">
-                        <label for="metode_transfer" class="block text-sm font-medium text-gray-700">Semester</label>
-                        <select id="metode_transfer" name="metode_transfer"
+                        <label for="semester" class="block text-sm font-medium text-gray-700">Semester</label>
+                        <select id="semester" name="semester"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option selected disabled>Pilih Semester</option>
-                            <option value="ATM">1</option>
-                            <option value="E-Banking">2</option>
-                            <option value="E-Banking">3</option>
-                            <option value="E-Banking">4</option>
-                            <option value="E-Banking">5</option>
-                            <option value="E-Banking">6</option>
-                            <option value="E-Banking">7</option>
-                            <option value="E-Banking">8</option>
-                            <option value="E-Banking">9</option>
-                            <option value="E-Banking">10</option>
-                            <option value="E-Banking">11</option>
-                            <option value="E-Banking">12</option>
-                            <option value="E-Banking">13</option>
-                            <option value="E-Banking">14</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- Tambahkan opsi semester sesuai kebutuhan -->
                         </select>
                     </div>
                     <div class="col-span-1">
-                        <label for="metode_transfer" class="block text-sm font-medium text-gray-700">Tahun Ajaran</label>
-                        <select id="metode_transfer" name="metode_transfer"
+                        <label for="tahun_ajaran" class="block text-sm font-medium text-gray-700">Tahun Ajaran</label>
+                        <select id="tahun_ajaran" name="tahun_ajaran"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option selected disabled>Pilih Tahun Ajaran</option>
-                            <option value="ATM">Genap</option>
-                            <option value="E-Banking">Ganjil</option>
+                            <option selected disabled>Tahun Ajaran</option>
+                            <option value="Ganjil">Ganjil</option>
+                            <option value="Genap">Genap</option>
+                            <!-- Tambahkan opsi semester sesuai kebutuhan -->
                         </select>
                     </div>
                     <div class="col-span-1 lg:col-span-3">
-                        <label for="keterangan" class="block text-sm font-medium text-gray-700">Keterangan</label>
-                        <textarea id="keterangan" name="keterangan" rows="3"
+                        <label for="deskripsi" class="block text-sm font-medium text-gray-700">deskripsi</label>
+                        <textarea id="deskripsi" name="deskripsi" rows="3"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             placeholder="Sertakan Nama dan Nim Anda"></textarea>
                     </div>

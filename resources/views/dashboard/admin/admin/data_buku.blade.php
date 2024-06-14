@@ -48,14 +48,14 @@
                     Tambah Buku</a>
             </div>
             <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                <thead class="bg-gray-300">
+                <thead class="bg-[#13947D]">
                     <tr>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">No</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Judul</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Pengarang</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Stok</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Deskripsi</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Action</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">No</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Judul</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Pengarang</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Stok</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Deskripsi</th>
+                        <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -65,7 +65,7 @@
                                 {{ $loop->iteration }}</td>
                             <td class="px-3 py-4 border border-gray-400">{{ $item->judul }}</td>
                             <td class="px-3 py-4 border border-gray-400">{{ $item->pengarang }}</td>
-                            <td class="px-3 py-4 border border-gray-400">{{ $item->stok }}
+                            <td class="px-3 py-4 border border-gray-400 text-center">{{ $item->stok }}
                             </td>
                             <td class="px-3 py-4 border border-gray-400 text-justify">
                                 {{ $item->deskripsi }}
@@ -89,4 +89,9 @@
     {{-- Jquery Start --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/sessionTime.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
 @endsection

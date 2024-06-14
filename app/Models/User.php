@@ -34,7 +34,8 @@ class User extends Authenticatable
         'image',
         'status_kuliah',
         'jurusan',
-        'role'
+        'role',
+        'dospem_id'
     ];
 
 

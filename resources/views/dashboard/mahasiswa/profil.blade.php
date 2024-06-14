@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5 md:w-full lg:w-full mx-auto">
+        <h1 class="text-2xl text-center lg:text-left text-3xl font-bold mb-3">Biodata Mahasiswa</h1>
         <div class="mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
@@ -119,11 +120,53 @@
                             <div class="text-red-500 text-sm">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="flex justify-center mt-2">
+                    <div class="flex justify-center lg:justify-end mt-2">
                         <button type="submit"
                             class="bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded">
                             Update
                         </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Dosen Pembimbing --}}
+    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5 md:w-full lg:w-full mx-auto mt-10">
+        <h1 class="text-2xl text-center lg:text-left lg:text-3xl font-bold mb-3">Dosen Pembimbing Akademik</h1>
+        <div class="lg:flex md:block w-full">
+            @if ($dosen_pa->dosen->image)
+                <img id="profile-picture" src="{{ asset(str_replace('public/', 'storage/', $dosen_pa->dosen->image)) }}"
+                    alt="Profile Picture" class="w-52 object-cover h-56 m-3 mx-auto md:mx-0">
+            @else
+                <img id="profile-picture" src="{{ asset('asset/default_profile.png') }}" alt="Profile Picture"
+                    class="w-52 object-cover h-56 m-3 mx-auto md:mx-0">
+            @endif
+
+            <div class="lg:ml-5 w-full mt-3 mr-3">
+                <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="list flex py-3 border-b">
+                        <label for="name" class="w-36">Nama</label>
+                        <input type="text" name="name" id="name"
+                            class="bg-gray-100 focus:outline-none w-full" readonly
+                            value="{{ $dosen_pa->dosen->name ?? '' }}">
+                    </div>
+                    <div class="list flex py-3 border-b">
+                        <label for="nidn" class="w-36">NIDN</label>
+                        <input type="text" name="nidn" id="nidn"
+                            class="bg-gray-100 focus:outline-none w-full" readonly
+                            value="{{ $dosen_pa->dosen->nidn ?? '' }}" readonly>
+                    </div>
+                    <div class="list flex py-3 border-b">
+                        <label for="email" class="w-36">Email</label>
+                        <input type="email" name="email" id="email"
+                            class="bg-gray-100 focus:outline-none w-full" readonly
+                            value="{{ $dosen_pa->dosen->email ?? '' }}">
+                    </div>
+                    <div class="list flex py-3 border-b">
+                        <label for="no_hp" class="w-36">Nomor HP</label>
+                        <input type="text" name="no_hp" id="no_hp" readonly
+                            value="{{ $dosen_pa->dosen->no_hp }}" class="bg-gray-100 focus:outline-none w-full">
                     </div>
                 </form>
             </div>

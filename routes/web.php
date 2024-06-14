@@ -56,6 +56,7 @@ Route::prefix('siakad')->group(function () {
         Route::post('/submit/krs', [Kontrak_matkulController::class, 'submitKRS'])->name('post.mahasiswa.krs');
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
+        Route::post('/konfirmasi_pembayaran', [TagihanController::class, 'pembayaranStore'])->name('mahasiswa.konfirmasi_pembayaran.store');
     });
 
     // dosen
@@ -120,6 +121,14 @@ Route::prefix('siakad')->group(function () {
         });
 
         Route::get('/konfirmasi_pembayaran', [AdminController::class, 'konfirmasiPembayaran'])->name('admin.konfirmasi_pembayaran');
+        Route::post('/konfirmasi_pembayaran/{id}', [AdminController::class, 'konfirmasiTagihan'])->name('post.admin.konfirmasi_pembayaran');
+        Route::get('/konfirmasi/lihat/{id}', [AdminController::class, 'lihatGambar'])->name('konfirmasi.lihat');
+        Route::get('/data_buku', [AdminController::class, 'dataBuku'])->name('admin.data_buku');
+        Route::get('/data_buku/buku_add', [AdminController::class, 'bukuAdd'])->name('admin.data_buku.add');
+        Route::post('/data_buku/buku_store', [AdminController::class, 'bukuStore'])->name('admin.data_buku.store');
+        Route::get('/data_buku/buku_edit/{id}', [AdminController::class, 'bukuEdit'])->name('admin.data_buku.edit');
+        Route::put('/data_buku/buku_update/{id}', [AdminController::class, 'bukuUpdate'])->name('admin.data_buku.update');
+        Route::post('/data_buku/buku_delete/{id}', [AdminController::class, 'bukuDelete'])->name('admin.data_buku.delete');
         Route::get('/konfirmasi_perpustakaan', [AdminController::class, 'konfirmasiPerpustakaan'])->name('admin.konfirmasi_perpustakaan');
         Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
         Route::get('/pembukaan_matkul', [AdminController::class, 'pembukaanMatkul'])->name('admin.pembukaan_matkul');

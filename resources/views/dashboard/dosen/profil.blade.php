@@ -45,7 +45,7 @@
             @endif
 
             <div class="ml-1 w-full mt-3 mr-3">
-                <form action="{{ route('admin.data_dosen.update', ['id' => $dosen->id]) }}" method="POST"
+                <form action="{{ route('dosen.update', ['id' => $dosen->id]) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

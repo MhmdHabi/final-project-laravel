@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\AktifasiMatkul;
 use App\Models\Buku;
+use App\Models\Pembayaran;
 use App\Models\Pinjam;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class AdminController extends Controller
         $buku = Buku::all();
         return view('dashboard.admin.admin.data_buku', compact('buku'));
     }
-    public function bukuadd()
+    public function bukuAdd()
     {
         return view('dashboard.admin.admin.buku_add');
     }
@@ -113,7 +114,12 @@ class AdminController extends Controller
 
     public function konfirmasiPembayaran()
     {
-        return view('dashboard.admin.admin.konfirmasi_pembayaran');
+        // Mengambil data konfirmasi pembayaran yang perlu dikonfirmasi oleh admin
+        $konfirmasiPembayaran = Pembayaran::with('mahasiswa')->get();
+
+        return view('dashboard.admin.admin.konfirmasi_pembayaran', [
+            'konfirmasiPembayaran' => $konfirmasiPembayaran,
+        ]);
     }
 
     public function konfirmasiPerpustakaan()
@@ -222,5 +228,29 @@ class AdminController extends Controller
         $message = $status->is_open ? 'Pemilihan mata kuliah dibuka.' : 'Pemilihan mata kuliah ditutup.';
 
         return redirect()->back()->with($status->is_open ? 'success' : 'error', $message);
+    }
+
+    public function konfirmasiTagihan(Request $request, $id)
+    {
+        $pembayaran = Pembayaran::findOrFail($id);
+
+        // Anda dapat mengambil status konfirmasi dari model Pembayaran atau KonfirmasiPembayaran
+        // Asumsikan status_konfirmasi berada di model Pembayaran
+        if ($request->status === 'Diterima') {
+            $pembayaran->status_konfirmasi = 'Diterima';
+        } elseif ($request->status === 'Ditolak') {
+            $pembayaran->status_konfirmasi = 'Ditolak';
+        }
+
+        $pembayaran->save();
+
+        return redirect()->back()->with('success', 'Status konfirmasi pembayaran berhasil diubah.');
+    }
+
+    public function lihatGambar($id)
+    {
+        $pembayaran = Pembayaran::findOrFail($id);
+
+        return view('dashboard.admin.admin.bukti_pembayaran', compact('pembayaran'));
     }
 }

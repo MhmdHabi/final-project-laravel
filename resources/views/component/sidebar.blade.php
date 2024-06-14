@@ -2,10 +2,10 @@
     <div class="header-box flex justify-between border-b-2">
         <div class="flex">
             <img id="profile-picture" src="{{ asset('asset/logo_siakad.jpg') }}" alt="Profile Picture"
-                class="w-20 object-cover p-0">
-            <h3 class="my-auto text-lg font-bold">Universitas <span class="block">Academy</span></h3>
+                class="w-16 lg:w-20 object-cover p-0">
+            <h3 class="my-auto text-md lg:text-lg font-bold">Universitas <span class="block">Academy</span></h3>
         </div>
-        <button class="btn-close block md:hidden close-btn px-1 py-0 me-3 text-[#2e4765]">
+        <button class="btn-close block md:hidden close-btn px-1 py-0 me-3 text-white">
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
@@ -71,6 +71,12 @@
                     </li>
                 @elseif (Auth::user()->roles[0]->name == 'dosen')
                     <li class="sidebar-item">
+                        <a href="{{ route('dosen.mengajar') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-money-bill-1 mr-3 text-white"></i>Jadwal Mengajar
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a href="{{ route('dosen.profil') }}"
                             class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
                             <i class="fa-solid fa-user mr-5 text-white"></i>Profil Dosen
@@ -79,12 +85,6 @@
                     <li class="sidebar-item">
                         <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
                             <i class="fa-solid fa-user mr-5 text-white"></i>Presensi Dosen
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ route('dosen.mengajar') }}"
-                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
-                            <i class="fa-solid fa-money-bill-1 mr-3 text-white"></i>Jadwal Mengajar
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -114,20 +114,22 @@
                     </li>
                     <li class="sidebar-item">
                         <a href="{{ route('admin.data_dospem') }}"
-                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
-                            <i class="fa-solid fa-user mr-4 text-black"></i>Data Dospem
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-user mr-4 text-white"></i>Data Dospem
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-black">
-                            <i class="fa-solid fa-money-bill-1 mr-3 text-black"></i>Pembayaran
+                        <a href="{{ route('admin.data_buku') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-book-open mr-3 text-white"></i>Data Buku
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                        <a href="{{ route('admin.konfirmasi_pembayaran') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
                             <i class="fa-solid fa-money-bill-1 mr-3 text-white"></i>Pembayaran
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="sidebar-item">
                         <a href="{{ route('admin.konfirmasi_perpustakaan') }}"
                             class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">

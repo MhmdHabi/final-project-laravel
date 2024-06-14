@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
+use App\Models\DosenPA;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,9 @@ class ProfilController extends Controller
     public function index()
     {
         $mahasiswa = Auth::user();
-
-        return view('dashboard.mahasiswa.profil', compact('mahasiswa'));
+        $dosen_pa = DosenPA::where('mahasiswa_id', $mahasiswa->id)->with('dosen')->first();
+        $dosen = Auth::user();
+        return view('dashboard.mahasiswa.profil', compact('mahasiswa', 'dosen_pa', 'dosen'));
     }
 
     public function profilUpdate(Request $request, $id)

@@ -3,7 +3,6 @@
 @section('judul', 'Jadwal Dosen')
 
 @section('content')
-@section('content')
     <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 py-5 rounded-md ">
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">JADWAL MENGAJAR DOSEN</h1>
@@ -47,7 +46,8 @@
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
                                 {{ $schedule->ruangan }}</td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
-                                {{ date('l, H:i', strtotime($schedule->jadwal)) }}</td>
+                                {{ date('l, d F Y H:i', strtotime($schedule->jadwal)) }}
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -55,5 +55,4 @@
             </table>
         </div>
     </div>
-@endsection
 @endsection

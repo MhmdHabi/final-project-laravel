@@ -47,14 +47,14 @@
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                    <thead class="bg-gray-300">
+                    <thead class="bg-[#13947D]">
                         <tr>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">No</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">NIDN</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Nama</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Email</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Jabatan</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black text-center w-32">
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">No</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">NIDN</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Nama</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Email</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Jabatan</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white text-center w-32">
                                 Action
                             </th>
                         </tr>
@@ -85,4 +85,13 @@
             </div>
         </div>
     </div>
+
+    {{-- Jquery Start --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/sessionTime.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
 @endsection
