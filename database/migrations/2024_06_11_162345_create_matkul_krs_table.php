@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('krs_id');
             $table->unsignedBigInteger('matkul_id');
             $table->enum('status', ['Menunggu', 'Disetujui', 'Ditolak'])->default('Menunggu');
+            $table->decimal('nilai', 4, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('krs_id')->references('id')->on('krs')->onDelete('cascade');

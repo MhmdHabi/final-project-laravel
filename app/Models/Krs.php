@@ -9,12 +9,13 @@ class Krs extends Model
 {
     use HasFactory;
 
+    protected $table = 'krs';
+
     protected $fillable = [
         'mahasiswa_id',
         'semester_id',
         'dospem_id',
         'status',
-        'ipk',
     ];
 
     public function mahasiswa()
@@ -35,5 +36,10 @@ class Krs extends Model
     public function dosenPA()
     {
         return $this->belongsTo(DosenPA::class, 'mahasiswa_id', 'mahasiswa_id');
+    }
+
+    public function matkulKrs()
+    {
+        return $this->hasMany(MatkulKrs::class);
     }
 }

@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '1980-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Dosen',
-            'jabatan' => 'Dosen SI',
+            'jabatan' => 'Dosen TI',
         ]);
         $dosen1->assignRole($roleDosen);
 
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '2000-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Mahasiswa',
-            'jurusan' => 'Sistem Informasi',
+            'jurusan' => 'Teknik Informatika',
             'status_kuliah' => 'Aktif',
         ]);
         $mahasiswa1->assignRole($roleMahasiswa);
@@ -116,7 +116,7 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '2000-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Mahasiswa',
-            'jurusan' => 'Sistem Informasi',
+            'jurusan' => 'Teknik Informatika',
             'status_kuliah' => 'Aktif',
         ]);
         $mahasiswa4->assignRole($roleMahasiswa);
@@ -131,7 +131,7 @@ class UserSeeder extends Seeder
             'tgl_lahir' => '2000-01-01',
             'agama' => 'Islam',
             'alamat' => 'Alamat Mahasiswa',
-            'jurusan' => 'Sistem Informasi',
+            'jurusan' => 'Teknik Informatika',
             'status_kuliah' => 'Aktif',
         ]);
         $mahasiswa5->assignRole($roleMahasiswa);

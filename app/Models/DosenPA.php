@@ -21,7 +21,7 @@ class DosenPA extends Model
         return $this->hasMany(Krs::class, 'mahasiswa_id', 'mahasiswa_id');
     }
 
-    public function user()
+    public function dosen()
     {
         return $this->belongsTo(User::class, 'dospem_id');
     }

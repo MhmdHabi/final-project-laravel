@@ -8,7 +8,6 @@
             <h1 class="font-bold text-xl">KARTU RANCANGAN STUDI</h1>
         </div>
 
-
         {{-- tabel Krs --}}
         <div class=" px-5 pb-2 overflow-auto">
             <div class="flex justify-end mb-1">
@@ -55,7 +54,8 @@
                             </td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
                                 {{ date('l, H:i', strtotime($krsan->matkul->jadwal)) }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->dosen->name }}
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                {{ $krsan->matkul->dosen->name }}
                             </td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
                                 @if ($krsan->status === 'Menunggu')

@@ -76,202 +76,21 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
                                     <td colspan="5" class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        1</td>
+                                        Semester {{ $semesterPaket }}
+                                    </td>
                                 </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 1)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}</td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]" value="{{ $pakets->matkul->id }}"
-                                                    class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5" class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        2</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 2)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]" value="{{ $pakets->matkul->id }}"
-                                                    class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5" class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        3</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 3)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]" value="{{ $pakets->matkul->id }}"
-                                                    class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5" class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        4</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 4)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]" value="{{ $pakets->matkul->id }}"
-                                                    class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5" class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        5</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 5)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]"
-                                                    value="{{ $pakets->matkul->id }}" class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5"
-                                        class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        6</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 6)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]"
-                                                    value="{{ $pakets->matkul->id }}" class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5"
-                                        class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        7</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 7)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]"
-                                                    value="{{ $pakets->matkul->id }}" class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td colspan="5"
-                                        class="px-3 py-4 border bg-amber-400 border-gray-400 font-semibold">
-                                        Semester
-                                        8</td>
-                                </tr>
-                                @foreach ($paket as $index => $pakets)
-                                    @if ($pakets->paket_id == 8)
-                                        <tr>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->kode_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400">{{ $pakets->matkul->nama_mk }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                {{ $pakets->matkul->sks }}
-                                            </td>
-                                            <td class="px-3 py-4 border border-gray-400 text-center">
-                                                <input type="checkbox" name="matkul_id[]"
-                                                    value="{{ $pakets->matkul->id }}" class="mr-2">Pilih
-                                            </td>
-                                        </tr>
-                                    @endif
+                                @foreach ($paket as $index => $paket)
+                                    <tr>
+                                        <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
+                                        <td class="px-3 py-4 border border-gray-400">{{ $paket->matkul->kode_mk }}</td>
+                                        <td class="px-3 py-4 border border-gray-400">{{ $paket->matkul->nama_mk }}</td>
+                                        <td class="px-3 py-4 border border-gray-400 text-center">
+                                            {{ $paket->matkul->sks }}</td>
+                                        <td class="px-3 py-4 border border-gray-400 text-center">
+                                            <input type="checkbox" name="matkul_id[]" value="{{ $paket->matkul->id }}"
+                                                class="mr-2">Pilih
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

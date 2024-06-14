@@ -26,9 +26,8 @@ return new class extends Migration
             $table->string('jabatan')->nullable();
             $table->text('alamat')->nullable();
             $table->text('image')->nullable();
-            $table->string('status_kuliah')->nullable();
+            $table->enum('status_kuliah', ['Aktif', 'Non-Aktif'])->nullable();
             $table->enum('jurusan', ['Sistem Informasi', 'Teknik Informatika'])->nullable();
-            $table->string('fakultas')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
