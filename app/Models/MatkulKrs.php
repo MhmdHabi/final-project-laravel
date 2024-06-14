@@ -9,10 +9,13 @@ class MatkulKrs extends Model
 {
     use HasFactory;
 
+    protected $table = 'matkul_krs';
+
     protected $fillable = [
         'krs_id',
         'matkul_id',
-        'status'
+        'status',
+        'nilai'
     ];
 
     public function krs()

@@ -19,9 +19,10 @@ class DatabaseSeeder extends Seeder
             AktifasiMatkul::class,
             MatkulSeeder::class,
             TASeeder::class,
+            SemesterSeeder::class,
             PaketMatkulSeeder::class,
             MatkulPaketSeeder::class,
-            DosenPASeeder::class
+            DosenPASeeder::class,
         ]);
     }
 }

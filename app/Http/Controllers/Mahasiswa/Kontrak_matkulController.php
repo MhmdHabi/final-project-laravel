@@ -9,17 +9,23 @@ use App\Models\Krs;
 use App\Models\Matkul;
 use App\Models\MatkulKrs;
 use App\Models\MatkulPaket;
-use App\Models\Semester;
 use Illuminate\Http\Request;
 
 class Kontrak_matkulController extends Controller
 {
     public function formMatkul()
     {
-        $status = AktifasiMatkul::first();
-        $paket = MatkulPaket::get();
+        $user = auth()->user();
 
-        return view('dashboard.mahasiswa.kontrak_matkul', compact('paket', 'status'));
+        $status = AktifasiMatkul::first();
+
+        $krsTerakhir = $user->krs()->orderBy('semester_id', 'desc')->first();
+
+        $semesterPaket = $krsTerakhir ? ($krsTerakhir->semester_id + 1) : 1;
+
+        $paket = MatkulPaket::where('paket_id', $semesterPaket)->get();
+
+        return view('dashboard.mahasiswa.kontrak_matkul', compact('paket', 'status', 'semesterPaket'));
     }
 
     public function submitKRS(Request $request)
@@ -40,26 +46,12 @@ class Kontrak_matkulController extends Controller
             return redirect()->back()->with('error', 'Total SKS tidak boleh melebihi 24.');
         }
 
-        $currentSemester = Semester::orderBy('id', 'desc')->first();
+        $user = auth()->user();
+        $mahasiswa_id = $user->id;
 
-        if (!$currentSemester) {
-            $newAkademikId = 1;
-        } else {
-            if ($currentSemester->semester === 'Ganjil') {
-                $newAkademikId = $currentSemester->akademik_id + 1;
-                $newSemesterType = 'Genap';
-            } else {
-                $newAkademikId = $currentSemester->akademik_id;
-                $newSemesterType = 'Ganjil';
-            }
-        }
+        $krsTerakhir = $user->krs()->orderBy('semester_id', 'desc')->first();
 
-        $newSemester = Semester::create([
-            'akademik_id' => $newAkademikId,
-            'semester' => $newSemesterType ?? 'Ganjil'
-        ]);
-
-        $mahasiswa_id = auth()->user()->id;
+        $semesterPaket = $krsTerakhir ? ($krsTerakhir->semester_id + 1) : 1;
 
         $dosenPA = DosenPA::where('mahasiswa_id', $mahasiswa_id)->first();
 
@@ -68,8 +60,8 @@ class Kontrak_matkulController extends Controller
         }
 
         $krs = Krs::create([
-            'mahasiswa_id' => $request->mahasiswa_id,
-            'semester_id' => $newSemester->id,
+            'mahasiswa_id' => $mahasiswa_id,
+            'semester_id' => $semesterPaket,
             'dospem_id' => $dosenPA->id,
             'status' => $request->status,
         ]);

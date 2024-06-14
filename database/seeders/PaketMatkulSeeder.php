@@ -14,14 +14,14 @@ class PaketMatkulSeeder extends Seeder
     public function run(): void
     {
         DB::table('paket_matkuls')->insert([
-            ['nama_paket' => 'Paket Semester 1'],
-            ['nama_paket' => 'Paket Semester 2'],
-            ['nama_paket' => 'Paket Semester 3'],
-            ['nama_paket' => 'Paket Semester 4'],
-            ['nama_paket' => 'Paket Semester 5'],
-            ['nama_paket' => 'Paket Semester 6'],
-            ['nama_paket' => 'Paket Semester 7'],
-            ['nama_paket' => 'Paket Semester 8'],
+            ['semester_id' => 1, 'nama_paket' => 'Paket Semester 1'],
+            ['semester_id' => 2, 'nama_paket' => 'Paket Semester 2'],
+            ['semester_id' => 3, 'nama_paket' => 'Paket Semester 3'],
+            ['semester_id' => 4, 'nama_paket' => 'Paket Semester 4'],
+            ['semester_id' => 5, 'nama_paket' => 'Paket Semester 5'],
+            ['semester_id' => 6, 'nama_paket' => 'Paket Semester 6'],
+            ['semester_id' => 7, 'nama_paket' => 'Paket Semester 7'],
+            ['semester_id' => 8, 'nama_paket' => 'Paket Semester 8'],
         ]);
     }
 }

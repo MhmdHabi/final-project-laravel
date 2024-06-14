@@ -15,23 +15,27 @@
             </div>
             <div class="flex py-1">
                 <p class="w-36">Nim</p>
-                <p>: 8020210101</p>
+                <p>: {{ $mahasiswa->nim }}</p>
             </div>
             <div class="flex py-1">
                 <p class="w-36">Nama</p>
-                <p>: Muhammad Habi</p>
+                <p>: {{ $mahasiswa->name }}</p>
             </div>
             <div class="flex py-1">
-                <p class="w-36">Nomor Hp</p>
-                <p>: 0212121212</p>
+                <p class="w-36">Email</p>
+                <p>: {{ $mahasiswa->email }}</p>
             </div>
             <div class="flex py-1">
                 <p class="w-36">Jurusan</p>
-                <p>: Teknik Informatika</p>
+                <p>: {{ $mahasiswa->jurusan }}</p>
             </div>
             <div class="flex py-1">
                 <p class="w-36">Semester</p>
-                <p>: 7</p>
+                @if ($semester)
+                    <p>: {{ $semester->semester->semester }} - {{ $semester->semester->akademik_id }}</p>
+                @else
+                    <p>: - </p>
+                @endif
             </div>
         </div>
 
@@ -42,117 +46,90 @@
                     <thead class="bg-gray-300">
                         <tr>
                             <th class="w-1/12 px-3 py-3 border border-gray-400 text-left text-md text-black">No</th>
-                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black">Kode MK</th>
-                            <th class="w-4/12 px-3 py-3 border border-gray-400 text-left text-md text-black">Mata Kuliah
+                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black">Kode MK
                             </th>
-                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black text-center">SKS
+                            <th class="w-3/12 px-3 py-3 border border-gray-400 text-left text-md text-black">Mata Kuliah
                             </th>
-                            <th class="w-3/12 px-3 py-3 border border-gray-400 text-left text-md text-black text-center">
+                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black text-center">
+                                SKS
+                            </th>
+                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black text-center">
                                 Grade</th>
+                            <th class="w-2/12 px-3 py-3 border border-gray-400 text-left text-md text-black text-center">
+                                Mutu</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Header Semester 1 -->
-                        <tr>
-                            <td colspan="5" class="px-3 py-3 border border-gray-400 font-bold bg-amber-300">
-                                Semester 1
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">1</td>
-                            <td class="px-3 py-4 border border-gray-400">TI101</td>
-                            <td class="px-3 py-4 border border-gray-400">Pemrograman Dasar</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">2</td>
-                            <td class="px-3 py-4 border border-gray-400">TI102</td>
-                            <td class="px-3 py-4 border border-gray-400">Struktur Data</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">B+</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400 ">3</td>
-                            <td class="px-3 py-4 border border-gray-400">TI103</td>
-                            <td class="px-3 py-4 border border-gray-400">Algoritma</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A-</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">4</td>
-                            <td class="px-3 py-4 border border-gray-400">TI104</td>
-                            <td class="px-3 py-4 border border-gray-400">Basis Data</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">4</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">B</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">5</td>
-                            <td class="px-3 py-4 border border-gray-400">TI105</td>
-                            <td class="px-3 py-4 border border-gray-400">Jaringan Komputer</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A</td>
-                        </tr>
-                    </tbody>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Header Semester 2 -->
-                        <tr>
-                            <td colspan="5" class="px-3 py-3 border border-gray-400 font-bold bg-amber-300">
-                                Semester 2
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">1</td>
-                            <td class="px-3 py-4 border border-gray-400">TI101</td>
-                            <td class="px-3 py-4 border border-gray-400">Pemrograman Dasar</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">2</td>
-                            <td class="px-3 py-4 border border-gray-400">TI102</td>
-                            <td class="px-3 py-4 border border-gray-400">Struktur Data</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">B+</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">3</td>
-                            <td class="px-3 py-4 border border-gray-400">TI103</td>
-                            <td class="px-3 py-4 border border-gray-400">Algoritma</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A-</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">4</td>
-                            <td class="px-3 py-4 border border-gray-400">TI104</td>
-                            <td class="px-3 py-4 border border-gray-400">Basis Data</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">4</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">B</td>
-                        </tr>
-                        <tr>
-                            <td class="px-3 py-4 border border-gray-400">5</td>
-                            <td class="px-3 py-4 border border-gray-400">TI105</td>
-                            <td class="px-3 py-4 border border-gray-400">Jaringan Komputer</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">3</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">A</td>
-                        </tr>
-                    </tbody>
+                    @foreach ($transkip as $krs)
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <!-- Header Semester 1 -->
+                            <tr>
+                                <td colspan="6" class="px-3 py-3 border border-gray-400 font-bold bg-amber-300">Semester
+                                    {{ $loop->iteration }}</td>
+                            </tr>
+                            @foreach ($krs->matkulKrs as $index => $khsan)
+                                <tr>
+                                    <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
+                                    <td class="px-3 py-4 border border-gray-400">{{ $khsan->matkul->kode_mk }}</td>
+                                    <td class="px-3 py-4 border border-gray-400">{{ $khsan->matkul->nama_mk }}</td>
+                                    <td class="px-3 py-4 border border-gray-400 text-center">{{ $khsan->matkul->sks }}</td>
+                                    <td class="px-3 py-4 border border-gray-400 text-center">
+                                        {{ getGrade($khsan->nilai) }}
+                                    </td>
+                                    <td class="px-3 py-4 border border-gray-400 text-center">
+                                        {{ $khsan->nilai }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>
+
         <div class="px-5">
             <div class="flex py-1">
-                <p class="w-36">Indeks Prestasi</p>
-                <p>: 8020210101</p>
+                <strong>
+                    <p class="w-auto">Indeks Prestasi Kumulatif</p>
+                </strong>
+                <strong>
+                    <p>: {{ number_format($nilai, 2) }}</p>
+                </strong>
             </div>
             <div class="flex py-1">
-                <p class="w-36">Total Sks</p>
-                <p>: Muhammad Habi</p>
-            </div>
-            <div class="flex py-1">
-                <p class="w-36">Total Sks Gagal</p>
-                <p>: Muhammad Habi</p>
+                <strong>
+                    <p class="w-auto">Total SKS</p>
+                </strong>
+                <strong>
+                    <p>: {{ $totalSKS }}</p>
+                </strong>
             </div>
         </div>
     </section>
 @endsection
+
+@php
+    function getGrade($nilai)
+    {
+        if ($nilai !== null) {
+            if ($nilai >= 3.75 && $nilai <= 4.0) {
+                return 'A';
+            } elseif ($nilai >= 3.5 && $nilai < 3.75) {
+                return 'A-';
+            } elseif ($nilai >= 3.0 && $nilai < 3.5) {
+                return 'B+';
+            } elseif ($nilai >= 2.75 && $nilai < 3.0) {
+                return 'B';
+            } elseif ($nilai >= 2.5 && $nilai < 2.75) {
+                return 'B-';
+            } elseif ($nilai >= 2.0 && $nilai < 2.5) {
+                return 'C';
+            } elseif ($nilai >= 1.5 && $nilai < 2.0) {
+                return 'D';
+            } else {
+                return 'E';
+            }
+        } else {
+            $nilai == null;
+        }
+    }
+@endphp

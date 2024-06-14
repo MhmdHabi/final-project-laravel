@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('paket_matkuls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('semester_id');
             $table->string('nama_paket');
             $table->timestamps();
+
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
         });
     }
 

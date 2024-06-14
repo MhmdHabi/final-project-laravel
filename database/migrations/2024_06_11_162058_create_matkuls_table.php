@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('ruangan');
             $table->unsignedBigInteger('dosen_id');
             $table->dateTime('jadwal');
-            $table->integer('nilai')->nullable();
             $table->timestamps();
 
             $table->foreign('dosen_id')->references('id')->on('users')->onDelete('cascade');

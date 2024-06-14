@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DosenController;
+use App\Http\Controllers\Admin\DospemController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Dosen\BiodataController;
 use App\Http\Controllers\Dosen\JadwalController;
@@ -92,6 +93,19 @@ Route::prefix('siakad')->group(function () {
             Route::post('/data_dosen/delete/{id}', [DosenController::class, 'deleteDosen'])->name('admin.data_dosen.delete');
             Route::get('/data_dosen/detail/{id}', [DosenController::class, 'detailDosen'])->name('admin.data_dosen.detail');
         });
+
+        // CRUD Dospem
+        Route::prefix('/')->group(function () {
+            Route::get('/data_dospem', [DospemController::class, 'index'])->name('admin.data_dospem');
+            Route::get('/data_dospem/info/{id}', [DospemController::class, 'infoDospem'])->name('admin.data_dospem.info');
+            Route::get('/data_dospem/add', [DospemController::class, 'addDospem'])->name('admin.data_dospem.add');
+            Route::post('/data_dospem/store', [DospemController::class, 'storeDospem'])->name('admin.data_dospem.store');
+            Route::get('/data_dospem/edit/{id}', [DospemController::class, 'editDospem'])->name('admin.data_dospem.edit');
+            Route::put('/data_dospem/update/{id}', [DospemController::class, 'updateDospem'])->name('admin.data_dospem.update');
+            Route::delete('/data_dospem/delete_dospem/{id}', [DospemController::class, 'deleteDospem'])->name('admin.data_dospem.delete_dospem');
+            Route::delete('/data_dospem/delete_mhs/{id}', [DospemController::class, 'deleteMhs'])->name('admin.data_dospem.delete_mhs');
+        });
+
         // CRUD Admin
         Route::prefix('/')->group(function () {
             Route::get('/data_admin', [AdminController::class, 'index'])->name('admin.data_admin');

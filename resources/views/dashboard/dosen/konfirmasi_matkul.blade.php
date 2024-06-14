@@ -31,7 +31,7 @@
             </div>
             <div class="flex py-1">
                 <p class="w-36">Dosen PA</p>
-                <p>: {{ $dosenPA->user->name }}</p>
+                <p>: {{ $dosenPA->dosen->name }}</p>
             </div>
 
             <div class="px-5 pb-2 mt-3">

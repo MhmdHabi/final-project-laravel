@@ -46,8 +46,9 @@
                                 <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
                                     {{ $khsan->matkul->dosen->name }}
                                 </td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">A</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->nilai }}
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap"> {{ $khsan->grade }}
+                                </td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->nilai }}
                                 </td>
                             </tr>
                             @php
@@ -60,7 +61,8 @@
                                         class="fa-solid fa-print mr-2  text-white"></i>Cetak</a>
                             </td>
                             <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold">{{ $totalSKS }} SKS</td>
-                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">IP
+                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">
+                                IP: {{ number_format($ipk, 2) }}
                             </td>
                         </tr>
                     </tbody>

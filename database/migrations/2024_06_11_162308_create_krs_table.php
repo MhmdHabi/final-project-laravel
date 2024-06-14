@@ -17,7 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('dospem_id');
             $table->unsignedBigInteger('semester_id');
             $table->enum('status', ['Menunggu', 'Disetujui', 'Ditolak'])->default('Menunggu');
-            $table->integer('ip')->nullable();
             $table->timestamps();
 
             $table->foreign('mahasiswa_id')->references('id')->on('users')->onDelete('cascade');
