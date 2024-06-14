@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\MahasiswaExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class MahasiswaController extends Controller
@@ -34,7 +36,6 @@ class MahasiswaController extends Controller
             'tgl_lahir' => 'required|date',
             'agama' => 'required|string',
             'jurusan' => 'required|string',
-            'status_kuliah' => 'required',
             'role' => 'required|in:mahasiswa,dosen,admin',
             'status_kuliah' => 'required|in:aktif,non-aktif',
         ]);
@@ -156,5 +157,10 @@ class MahasiswaController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function exportMahasiswa(Request $request)
+    {
+        return Excel::download(new MahasiswaExport($request), 'Data Mahasiswa.xlsx');
     }
 }

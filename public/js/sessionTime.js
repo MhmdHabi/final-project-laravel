@@ -1,5 +1,5 @@
 $(document).ready(function () {
     setTimeout(function () {
-        $("#successMessage").fadeOut(100);
+        $("#successMessage").fadeOut(200);
     }, 2000);
 });

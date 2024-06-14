@@ -10,7 +10,14 @@ body {
 }
 
 .sidebar ul li:hover {
-    background-color: #2e4765;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.sidebar-item a.active,
+.sidebar-item a.active i {
+    background-color: white;
+    color: #001e10;
     border-radius: 8px;
 }
 
@@ -21,7 +28,7 @@ body {
 
 .sidebar ul li:hover a,
 .sidebar ul li:hover a i {
-    color: white !important;
+    color: #01102e !important;
 }
 
 /* .sidebar-item.active a,

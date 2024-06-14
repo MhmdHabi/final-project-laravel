@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +18,7 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body class="bg-gray-100 h-screen">
     <div class="flex h-full">
         <!-- Sidebar start-->
@@ -74,35 +76,6 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        var table = $('#datatable').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('admin.mahasiswa.get_datatable') }}",
-                type: 'GET'
-            },
-            columns: [
-                { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-                { data: 'nim', name: 'nim' },
-                { data: 'email', name: 'email' },
-                { data: 'name', name: 'name' },
-                { data: 'no_hp', name: 'no_hp' },
-                { data: 'jurusan', name: 'jurusan' },
-                { data: 'status_kuliah', name: 'status_kuliah' },
-                { data: 'action', name: 'action', orderable: false, searchable: false }
-            ],
-            order: [[1, 'asc']],
-            createdRow: function(row, data, dataIndex) {
-                $(row).addClass('border border-gray-400');
-                $('td', row).addClass('border border-gray-400');
-            }
-        });
-        $('#dropdownMenu').change(function() {
-            table.ajax.url("{{ route('admin.mahasiswa.get_datatable') }}" + '?status_kuliah=' + $(this).val()).load();
-        });
-    });
-</script>
 </body>
+
 </html>

@@ -7,7 +7,7 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">KONTRAK MATAKULIAH</h1>
         </div>
-        <div class=" mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -40,7 +40,7 @@
         {{-- Tabel Kontrak Matakuliah --}}
         @if ($status && $status->is_open)
             {{-- Pesan --}}
-            <div class=" mb-3">
+            <div class="px-5 mb-3">
                 <div class="bg-amber-100 border border-amber-400 text-amber-700 px-4 py-3 rounded relative " role="alert">
                     <strong>Perhatian:</strong> Harap teliti dalam mengisi KRS karena hanya dapat disubmit satu kali.
                     <span class="absolute top-0 bottom-0 right-0 px-4 py-3">

@@ -10,6 +10,7 @@ class KrsController extends Controller
 {
     public function index()
     {
+        // dibuat berdasarkan nim dan semester
         $krs = MatkulKrs::all();
         return view('dashboard.mahasiswa.krs', compact('krs'));
     }

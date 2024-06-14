@@ -43,12 +43,8 @@
         {{-- Tabel peminjaman --}}
         <div class="px-5 pb-2">
             <div class="flex justify-end mb-1">
-                <a href="{{ route('mahasiswa.pinjam_buku') }}"
-                    class="border py-1 px-4 text-white bg-[#2e4765] rounded mr-2">
+                <a href="{{ route('mahasiswa.pinjam_buku') }}" class="border py-1 px-4 text-white bg-[#2e4765] rounded">
                     <i class="fa-solid fa-book mr-2 text-white"></i>Pinjam Buku
-                </a>
-                <a href="#" class="border py-1 px-4 text-white bg-[#2e4765] rounded">
-                    <i class="fa-solid fa-print mr-2 text-white"></i>Cetak
                 </a>
             </div>
             <table class="min-w-full divide-y divide-gray-200">

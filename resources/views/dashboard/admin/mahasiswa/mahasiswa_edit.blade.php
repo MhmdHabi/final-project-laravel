@@ -84,15 +84,6 @@
                     @enderror
                 </div>
                 <div class="mb-4">
-                    <label for="status_kuliah" class="block md:text-md lg:text-lg font-bold mb-2">Status Kuliah</label>
-                    <input type="text" name="status_kuliah" id="status_kuliah"
-                        class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Status Kuliah"
-                        value="{{ old('status_kuliah', $mahasiswa->status_kuliah) }}">
-                    @error('status_kuliah')
-                        <div class="text-red-500 text-sm">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="mb-4">
                     <label for="jurusan" class="block md:text-md lg:text-lg font-bold mb-2">Jurusan</label>
                     <select name="jurusan" id="jurusan" class="w-full border-gray-700 rounded-md px-3 py-2">
                         <option selected disabled>Pilih Jurusan</option>
@@ -109,9 +100,8 @@
                 </div>
                 <div class="mb-4">
                     <label for="agama" class="block md:text-md lg:text-lg font-bold mb-2">Agama</label>
-                    <input type="text" name="agama" id="agama"
-                        class="w-full border-gray-700 rounded-md px-3 py-2" placeholder="Masukkan Agama"
-                        value="{{ old('agama', $mahasiswa->agama) }}">
+                    <input type="text" name="agama" id="agama" class="w-full border-gray-700 rounded-md px-3 py-2"
+                        placeholder="Masukkan Agama" value="{{ old('agama', $mahasiswa->agama) }}">
                     @error('agama')
                         <div class="text-red-500 text-sm">{{ $message }}</div>
                     @enderror

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Exports\DosenExport;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DosenController extends Controller
 {
@@ -122,5 +124,10 @@ class DosenController extends Controller
         $dosen->delete();
 
         return redirect()->route('admin.data_dosen')->with('success', 'Dosen berhasil dihapus');
+    }
+
+    public function exportDosen(Request $request)
+    {
+        return Excel::download(new DosenExport($request), 'Data Dosen.xlsx');
     }
 }

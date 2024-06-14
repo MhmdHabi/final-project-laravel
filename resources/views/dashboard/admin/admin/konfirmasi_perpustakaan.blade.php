@@ -43,16 +43,16 @@
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-300">
+                    <thead class="bg-[#13947D]">
                         <tr>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">No</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">NIM</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Nama</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Judul Buku</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Tanggal Pinjam</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Tanggal Kembali</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Status</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black w-32">Action</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">No</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">NIM</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">Nama</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">Judul Buku</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">Tanggal Pinjam</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">Tanggal Kembali</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">Status</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-white w-32">Action</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">

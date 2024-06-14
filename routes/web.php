@@ -61,6 +61,7 @@ Route::prefix('siakad')->group(function () {
     Route::prefix('dosen')->middleware(['auth', 'role:dosen'])->group(function () {
         Route::get('/jadwal_mengajar', [JadwalController::class, 'index'])->name('dosen.mengajar');
         Route::get('/profil', [BiodataController::class, 'index'])->name('dosen.profil');
+        Route::put('/profil/update/{id}', [BiodataController::class, 'profilUpdate'])->name('dosen.update');
         Route::get('/konfirmasi_krs', [KonfirmasiMatkulController::class, 'index'])->name('dosen.konfirmasi_krs');
         Route::get('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'konfirmasi'])->name('dosen.konfirmasi_krs_detail');
         Route::post('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'update'])->name('post.dosen.konfirmasi_krs');
@@ -80,7 +81,7 @@ Route::prefix('siakad')->group(function () {
             Route::post('/data_mahasiswa/delete/{id}', [MahasiswaController::class, 'deleteMahasiswa'])->name('admin.data_mahasiswa.delete');
             Route::get('/data_mahasiswa/detail/{id}', [MahasiswaController::class, 'detailMahasiswa'])->name('admin.data_mahasiswa.detail');
             Route::get('/datatable_mahasiswa', [MahasiswaController::class, 'getdatatable'])->name('admin.mahasiswa.get_datatable');
-            
+            Route::get('/export_mahasiswa', [MahasiswaController::class, 'exportMahasiswa'])->name('export.mahasiswa');
         });
 
         // CRUD Dosen
@@ -92,6 +93,7 @@ Route::prefix('siakad')->group(function () {
             Route::put('/data_dosen/update/{id}', [DosenController::class, 'updateDosen'])->name('admin.data_dosen.update');
             Route::post('/data_dosen/delete/{id}', [DosenController::class, 'deleteDosen'])->name('admin.data_dosen.delete');
             Route::get('/data_dosen/detail/{id}', [DosenController::class, 'detailDosen'])->name('admin.data_dosen.detail');
+            Route::get('/export_dosen', [DosenController::class, 'exportDosen'])->name('export.dosen');
         });
         // CRUD Admin
         Route::prefix('/')->group(function () {

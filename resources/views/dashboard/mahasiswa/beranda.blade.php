@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] p-3 rounded">
+    <div class="shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] p-1 rounded">
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold sm:text-lg md:text-xl">INDEKS PRESTASI / GRADE POINT</h1>
         </div>

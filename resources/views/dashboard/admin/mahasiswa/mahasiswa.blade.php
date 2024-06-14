@@ -36,9 +36,14 @@
             @endif
         </div>
         <div class="flex px-5 justify-between items-center mb-5">
-            <a href="{{ route('admin.data_mahasiswa.add') }}">
-                <button class="px-4 py-2 bg-gray-500 text-white rounded-md mb-2">Tambah</button>
-            </a>
+            <div class="flex gap-3">
+                <a href="{{ route('admin.data_mahasiswa.add') }}">
+                    <button class="px-4 py-2 bg-[#13947D] text-white rounded-md mb-2">Tambah</button>
+                </a>
+                <a href="{{ route('export.mahasiswa') }}"><button
+                        class="px-4 py-2 bg-amber-500 text-white rounded-md w-full mb-2"><i
+                            class="fa-solid fa-print mr-2 text-white"></i>Cetak</button></a>
+            </div>
             <div class="relative">
                 <select id="dropdownMenu" name="status_kuliah" class="px-4 py-2 bg-green-500 text-white rounded-md">
                     <option selected disabled>status</option>
@@ -51,16 +56,16 @@
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                    <thead class="bg-gray-300">
+                    <thead class="bg-[#13947D]">
                         <tr>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">No</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">NIM</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Email</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Nama</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Nomor HP</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Jurusan</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Status</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center w-28">
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">No</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">NIM</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">Email</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">Nama</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">Nomor HP</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">Jurusan</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">Status</th>
+                            <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center w-28">
                                 Action
                             </th>
                         </tr>
@@ -73,6 +78,84 @@
     </div>
 @section('js')
     <script src="{{ asset('js/sessionTime.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var table = $('#datatable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('admin.mahasiswa.get_datatable') }}",
+                    type: 'GET'
+                },
+                lengthMenu: [5, 10, 25, 50, 100],
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                    },
+                    {
+                        data: 'nim',
+                        name: 'nim',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'no_hp',
+                        name: 'no_hp',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'jurusan',
+                        name: 'jurusan',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'status_kuliah',
+                        name: 'status_kuliah',
+                        orderable: true,
+                        searchable: false,
+                        className: 'orderable-column'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                    }
+                ],
+                order: [
+                    [1, 'asc']
+                ],
+                createdRow: function(row, data, dataIndex) {
+                    $(row).addClass('border border-gray-300');
+                    $('td', row).addClass('border border-gray-300');
+                }
+            });
+
+            $('#dropdownMenu').change(function() {
+                table.ajax.url("{{ route('admin.mahasiswa.get_datatable') }}" + '?status_kuliah=' + $(this)
+                    .val()).load();
+            });
+        });
+    </script>
+
 @endsection
 
 @endsection

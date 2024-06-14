@@ -3,8 +3,8 @@
 @section('judul', 'Profil Mahasiswa')
 
 @section('content')
-    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5">
-        <div class=" mb-3">
+    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5 md:w-full lg:w-full mx-auto">
+        <div class="mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div id="successMessage"
@@ -38,13 +38,13 @@
         <div class="lg:flex md:block w-full">
             @if ($mahasiswa->image)
                 <img id="profile-picture" src="{{ asset(str_replace('public/', 'storage/', $mahasiswa->image)) }}"
-                    alt="Profile Picture" class="w-52 object-cover h-56 m-3">
+                    alt="Profile Picture" class="w-52 object-cover h-56 m-3 mx-auto md:mx-0">
             @else
                 <img id="profile-picture" src="{{ asset('asset/default_profile.png') }}" alt="Profile Picture"
-                    class="w-52 object-cover h-56 m-3">
+                    class="w-52 object-cover h-56 m-3 mx-auto md:mx-0">
             @endif
 
-            <div class="ml-1 w-full mt-3 mr-3">
+            <div class="lg:ml-5 w-full mt-3 mr-3">
                 <form action="{{ route('mahasiswa.update', ['id' => $mahasiswa->id]) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
@@ -52,56 +52,57 @@
                     <div class="list flex py-3 border-b ">
                         <label for="name" class="w-36">Nama</label>
                         <input type="text" name="name" id="name" value="{{ $mahasiswa->name }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none w-full">
                     </div>
                     <div class="list flex py-3 border-b ">
                         <label for="nim" class="w-36">NIM</label>
                         <input type="text" name="nim" id="nim" value="{{ $mahasiswa->nim }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none w-full" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="email" class="w-36">Email</label>
                         <input type="email" name="email" id="email" value="{{ $mahasiswa->email }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none w-full">
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="gender" class="w-36">Jenis Kelamin</label>
                         <input type="text" name="gender" id="gender" value="{{ $mahasiswa->gender }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none w-full" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="no_hp" class="w-36">Nomor HP</label>
                         <input type="text" name="no_hp" id="no_hp" value="{{ $mahasiswa->no_hp }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none w-full">
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="tgl_lahir" class="w-36">Tanggal Lahir</label>
                         <input type="date" name="tgl_lahir" id="tgl_lahir" value="{{ $mahasiswa->tgl_lahir }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none w-full" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="agama" class="w-36">Agama</label>
                         <input type="text" name="agama" id="agama" value="{{ $mahasiswa->agama }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none w-full" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="jurusan" class="w-36">Jurusan</label>
                         <input type="text" name="jurusan" id="jurusan" value="{{ $mahasiswa->jurusan }}"
-                            class="bg-gray-100 focus:outline-none" readonly>
+                            class="bg-gray-100 focus:outline-none w-full" readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="alamat" class="w-36">Alamat</label>
                         <input type="text" name="alamat" id="alamat" value="{{ $mahasiswa->alamat }}"
-                            class="bg-gray-100 focus:outline-none">
+                            class="bg-gray-100 focus:outline-none w-full">
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="status_kuliah" class="w-36">Status Kuliah</label>
                         <input type="text" name="status_kuliah" id="status_kuliah"
-                            value="{{ $mahasiswa->status_kuliah }}" class="bg-gray-100 focus:outline-none" readonly>
+                            value="{{ $mahasiswa->status_kuliah }}" class="bg-gray-100 focus:outline-none w-full"
+                            readonly>
                     </div>
                     <div class="list flex py-3 border-b">
                         <label for="image" class="w-36">Image</label>
-                        <input type="file" name="image" id="image" class="bg-gray-100">
+                        <input type="file" name="image" id="image" class="bg-gray-100 w-full">
                     </div>
                     <div class="mb-4 flex items-center py-3">
                         <label for="password" class="block w-48">Change Password</label>
@@ -118,7 +119,7 @@
                             <div class="text-red-500 text-sm">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="flex justify-end mt-2">
+                    <div class="flex justify-center mt-2">
                         <button type="submit"
                             class="bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-6 rounded">
                             Update

@@ -41,13 +41,6 @@
 
         {{-- Tabel Buku --}}
         <div class="px-5 pb-2">
-            {{-- Tombol Pinjam --}}
-            <div class="flex justify-beetwen mb-2">
-                <a href="{{ route('mahasiswa.perpustakaan') }}"
-                    class="border py-2 px-4 text-white bg-amber-500 rounded my-auto mb-0">
-                    <i class="fa-solid fa-angle-left mr-2"></i>Kembali</a>
-                <button type="submit" class="bg-amber-400 font-bold py-2 px-4 rounded mt-5 ml-auto">Pinjam</button>
-            </div>
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-300">
                     <tr>
@@ -79,6 +72,12 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <div class="flex justify-beetwen mb-2">
+                            <a href="{{ route('mahasiswa.perpustakaan') }}"
+                                class="border py-2 px-4 text-white bg-amber-500 rounded my-auto mb-0">
+                                <i class="fa-solid fa-angle-left mr-2"></i>Kembali</a>
+                            <button type="submit" class="bg-amber-400 font-bold py-2 px-4 rounded ml-auto">Pinjam</button>
+                        </div>
                     </form>
                 </tbody>
             </table>

@@ -42,20 +42,20 @@
 
         <div class="flex px-5">
             <a href="{{ route('admin.data_admin.add') }}"><button
-                    class="px-4 py-2 bg-gray-500 text-white rounded-md w-full mb-2">Tambah</button></a>
+                    class="px-4 py-2 bg-[#13947D] text-white rounded-md w-full mb-2">Tambah</button></a>
         </div>
 
         {{-- Tabel Data Dosen --}}
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                    <thead class="bg-gray-300">
+                    <thead class="bg-[#13947D]">
                         <tr>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">No</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Username</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Nama</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black">Email</th>
-                            <th class="px-2 py-3 border border-gray-400 text-left text-md text-black text-center w-1/3">
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">No</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Username</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Nama</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white">Email</th>
+                            <th class="px-2 py-3 border border-gray-300 text-left text-md text-white text-center w-1/3">
                                 Action
                             </th>
                         </tr>
@@ -63,11 +63,11 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($admins as $admin)
                             <tr>
-                                <td class="px-2 py-4 border border-gray-400">{{ $loop->iteration }}</td>
-                                <td class="px-2 py-4 border border-gray-400">{{ $admin->username }}</td>
-                                <td class="px-2 py-4 border border-gray-400">{{ $admin->name }}</td>
-                                <td class="px-2 py-4 border border-gray-400">{{ $admin->email }}</td>
-                                <td class="px-2 py-4 border border-gray-400">
+                                <td class="px-2 py-4 border border-gray-300">{{ $loop->iteration }}</td>
+                                <td class="px-2 py-4 border border-gray-300">{{ $admin->username }}</td>
+                                <td class="px-2 py-4 border border-gray-300">{{ $admin->name }}</td>
+                                <td class="px-2 py-4 border border-gray-300">{{ $admin->email }}</td>
+                                <td class="px-2 py-4 border border-gray-300">
                                     <a href="{{ route('admin.data_admin.edit', ['id' => $admin->id]) }}"><button
                                             class="px-4 py-2 bg-blue-500 text-white rounded-md w-full mb-2">Edit</button></a>
                                     <form action="{{ route('admin.data_admin.delete', ['id' => $admin->id]) }}"
@@ -88,4 +88,10 @@
     {{-- Jquery Start --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/sessionTime.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+        });
+    </script>
 @endsection
