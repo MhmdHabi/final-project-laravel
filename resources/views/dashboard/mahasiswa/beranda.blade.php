@@ -23,7 +23,7 @@
     </style>
 
     <script>
-        // Data IP per semester (contoh data)
+        // Data IP per semester
         const ipData = {!! json_encode($ipData) !!};
 
         // Ekstraksi label dan data dari data IP

@@ -4,20 +4,35 @@ namespace App\Http\Controllers\Mahasiswa;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Data IP per semester
-        $ipData = [
-            ['semester' => 'Semester 1', 'ip' => 3.2],
-            ['semester' => 'Semester 2', 'ip' => 3.5],
-            ['semester' => 'Semester 3', 'ip' => 3.8],
-            ['semester' => 'Semester 4', 'ip' => 3.6],
-            ['semester' => 'Semester 5', 'ip' => 4]
-        ];
 
+        $user = Auth::user();
+
+        $krsRecords = $user->krs;
+
+        $ipData = [];
+
+        $totalSemesters = $krsRecords->count();
+
+        for ($i = 1; $i <= $totalSemesters; $i++) {
+            $matkulKrs = $krsRecords[$i - 1]->matkulKrs()->where('status', 'Disetujui')->get();
+
+            $averageNilai = $matkulKrs->avg('nilai');
+
+            $ipData[] = [
+                'semester' => 'Semester ' . $i,
+                'ip' => $averageNilai
+            ];
+        }
+
+        usort($ipData, function ($a, $b) {
+            return $a['semester'] <=> $b['semester'];
+        });
 
         return view('dashboard.mahasiswa.beranda', compact('ipData'));
     }
