@@ -11,8 +11,8 @@
         {{-- tabel Krs --}}
         <div class=" px-5 pb-2 overflow-auto">
             <div class="flex justify-end mb-1">
-                <a href="#" class="border py-1 px-4 text-white bg-[#2e4765] rounded"><i
-                        class="fa-solid fa-file-pdf mr-2 text-white"></i>Cetak Pdf</a>
+                <a href="{{ route('mahasiswa.pdf') }}" class="border py-1 px-4 text-white bg-[#2e4765] rounded"
+                    target="_blank"><i class="fa-solid fa-file-pdf mr-2 text-white"></i>Cetak Pdf</a>
             </div>
             <table class="min-w-full border-collapse border border-gray-200 ">
                 <thead class="bg-gray-300">

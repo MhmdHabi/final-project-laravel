@@ -3,6 +3,40 @@
 @section('judul', 'Tagihan')
 
 @section('content')
+    <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 pt-5 rounded-md mb-5">
+        <div class="flex mb-4 justify-center">
+            <h1 class="font-bold text-xl">DAFTAR REKENING BANK KAMPUS</h1>
+        </div>
+        <div class="flex flex-wrap mx-4">
+            <!-- Card 1 -->
+            <div class="w-full md:w-1/3 px-4 mb-8">
+                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
+                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank BNI</h2>
+                    <p class="">a.n. Universitas Academy</p>
+                    <p class="font-semibold">No Rek: 1234567890</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="w-full md:w-1/3 px-4 mb-8">
+                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
+                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank BRI</h2>
+                    <p class="">a.n. Universitas Academy</p>
+                    <p class="font-semibold">No Rek: 0987654321</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="w-full md:w-1/3 px-4 mb-8">
+                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
+                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank Mandiri</h2>
+                    <p class="">a.n. Universitas Academy</p>
+                    <p class="font-semibold">No Rek: 1122334455</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 py-5 rounded-md">
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">DATA TAGIHAN MAHASISWA</h1>
@@ -21,16 +55,14 @@
                 <thead class="bg-gray-300">
                     <tr>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">No</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Jenis Tagihan
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Jenis
+                            Tagihan
                         </th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Tanggal
                             Tagihan</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Semester</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Rekening</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Tahun</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Jumlah Tagihan
-                        </th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Deskripsi
                         </th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Status
                             Konfirmasi</th>
@@ -44,11 +76,9 @@
                             <td class="px-3 py-4 border border-gray-400">{{ $konfirmasi->tanggal_transfer }}</td>
                             <td class="px-3 py-4 border border-gray-400 text-center">{{ $konfirmasi->semester }}</td>
                             <td class="px-3 py-4 border border-gray-400 text-center">{{ $konfirmasi->rekening_tujuan }}</td>
-                            <td class="px-3 py-4 border border-gray-400 text-center">{{ $konfirmasi->tahun_ajaran }}</td>
                             <td class="px-3 py-4 border border-gray-400">Rp
                                 {{ number_format($konfirmasi->nominal, 0, ',', '.') }}</td>
 
-                            <td class="px-3 py-4 border border-gray-400">{{ $konfirmasi->deskripsi }}</td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
                                 @if ($konfirmasi->status_konfirmasi == 'Menunggu')
                                     <span class="border rounded bg-amber-300 py-2 px-3 font-semibold">Menunggu</span>

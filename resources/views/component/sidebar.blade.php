@@ -2,8 +2,9 @@
     <div class="header-box flex justify-between border-b-2">
         <div class="flex">
             <img id="profile-picture" src="{{ asset('asset/logo_siakad.jpg') }}" alt="Profile Picture"
-                class="w-16 lg:w-20 object-cover p-0">
-            <h3 class="my-auto text-md lg:text-lg font-bold">Universitas <span class="block">Academy</span></h3>
+                class="w-12 lg:w-18 object-cover p-0">
+            <h3 class="my-auto text-md lg:text-lg font-bold ml-3 font-[Oswald]">Universitas <span
+                    class="block">Academy</span></h3>
         </div>
         <button class="btn-close block md:hidden close-btn px-1 py-0 me-3 text-white">
             <i class="fa-solid fa-xmark"></i>

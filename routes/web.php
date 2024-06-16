@@ -17,6 +17,7 @@ use App\Http\Controllers\Mahasiswa\ProfilController;
 use App\Http\Controllers\Mahasiswa\PresensiController;
 use App\Http\Controllers\Mahasiswa\TagihanController;
 use App\Http\Controllers\Mahasiswa\TranskipController;
+use App\Http\Controllers\Mahasiswa\PdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +58,7 @@ Route::prefix('siakad')->group(function () {
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
         Route::post('/konfirmasi_pembayaran', [TagihanController::class, 'pembayaranStore'])->name('mahasiswa.konfirmasi_pembayaran.store');
+        Route::get('/krs/pdf', [PdfController::class, 'index'])->name('mahasiswa.pdf');
     });
 
     // dosen
