@@ -83,8 +83,9 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
-                            <i class="fa-solid fa-user mr-5 text-white"></i>Presensi Dosen
+                        <a href="{{ route('dosen.presensi') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-user mr-5 text-white"></i>Presensi
                         </a>
                     </li>
                     <li class="sidebar-item">

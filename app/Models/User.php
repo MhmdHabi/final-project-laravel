@@ -35,7 +35,6 @@ class User extends Authenticatable
         'status_kuliah',
         'jurusan',
         'role',
-        'dospem_id'
     ];
 
 
@@ -71,5 +70,15 @@ class User extends Authenticatable
     public function dospem()
     {
         return $this->belongsToMany(User::class, 'dosen_pa', 'dospem_id', 'mahasiswa_id');
+    }
+
+    public function matkul()
+    {
+        return $this->hasMany(Matkul::class);
+    }
+
+    public function presensiMahasiswa()
+    {
+        return $this->hasMany(PresensiMahasiswa::class, 'mahasiswa_id');
     }
 }

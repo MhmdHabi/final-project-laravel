@@ -8,6 +8,7 @@ use App\Http\Controllers\Dosen\BiodataController;
 use App\Http\Controllers\Dosen\JadwalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Dosen\KonfirmasiMatkulController;
+use App\Http\Controllers\Dosen\PresensiDosenController;
 use App\Http\Controllers\Mahasiswa\DashboardController;
 use App\Http\Controllers\Mahasiswa\KhsController;
 use App\Http\Controllers\Mahasiswa\KrsController;
@@ -44,6 +45,7 @@ Route::prefix('siakad')->group(function () {
     Route::prefix('mahasiswa')->middleware(['auth', 'role:mahasiswa'])->group(function () {
         Route::get('/beranda', [DashboardController::class, 'index'])->name('mahasiswa.beranda');
         Route::get('/presensi', [PresensiController::class, 'index'])->name('mahasiswa.presensi');
+        Route::post('/presensi/masuk', [PresensiController::class, 'presensiMhs'])->name('mahasiswa.absen');
         Route::get('/profil', [ProfilController::class, 'index'])->name('mahasiswa.profil');
         Route::put('/profil/update/{id}', [ProfilController::class, 'profilUpdate'])->name('mahasiswa.update');
         Route::get('/krs', [KrsController::class, 'index'])->name('mahasiswa.krs');
@@ -64,6 +66,9 @@ Route::prefix('siakad')->group(function () {
         Route::get('/jadwal_mengajar', [JadwalController::class, 'index'])->name('dosen.mengajar');
         Route::get('/profil', [BiodataController::class, 'index'])->name('dosen.profil');
         Route::put('/profil/update/{id}', [BiodataController::class, 'profilUpdate'])->name('dosen.update');
+        Route::get('/presensi', [PresensiDosenController::class, 'index'])->name('dosen.presensi');
+        Route::get('/rekap-presensi/{id}', [PresensiDosenController::class, 'rekapAbsen'])->name('dosen.rekap_absen');
+        Route::put('/toggle_absensi/{id}', [PresensiDosenController::class, 'toggleAbsensi'])->name('dosen.toggle_absensi');
         Route::get('/konfirmasi_krs', [KonfirmasiMatkulController::class, 'index'])->name('dosen.konfirmasi_krs');
         Route::get('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'konfirmasi'])->name('dosen.konfirmasi_krs_detail');
         Route::post('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'update'])->name('post.dosen.konfirmasi_krs');

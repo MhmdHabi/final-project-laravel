@@ -41,4 +41,14 @@ class Matkul extends Model
     {
         return $this->hasMany(Krs::class, 'matkul_id');
     }
+
+    public function presensiDosen()
+    {
+        return $this->hasOne(PresensiDosen::class);
+    }
+
+    public function presensiMahasiswa()
+    {
+        return $this->hasMany(PresensiMahasiswa::class);
+    }
 }
