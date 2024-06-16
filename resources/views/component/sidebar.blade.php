@@ -84,8 +84,15 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="" class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
-                            <i class="fa-solid fa-user mr-5 text-white"></i>Presensi Dosen
+                        <a href="{{ route('dosen.presensi') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-user mr-5 text-white"></i>Presensi
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('dosen.input.nilai') }}"
+                            class="text-decoration-none px-3 py-2 block md:text-lg lg:text-xl text-white">
+                            <i class="fa-solid fa-list-ol mr-5 text-white"></i>Input Nilai
                         </a>
                     </li>
                     <li class="sidebar-item">

@@ -46,7 +46,7 @@
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
                                 {{ $schedule->ruangan }}</td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
-                                {{ date('l, d F Y H:i', strtotime($schedule->jadwal)) }}
+                                {{ date('l, H:i', strtotime($schedule->jadwal)) }}
                             </td>
                         </tr>
                     @endforeach
