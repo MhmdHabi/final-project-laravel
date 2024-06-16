@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DosenController;
 use App\Http\Controllers\Admin\DospemController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Dosen\BiodataController;
+use App\Http\Controllers\Dosen\InputNilaiController;
 use App\Http\Controllers\Dosen\JadwalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Dosen\KonfirmasiMatkulController;
@@ -69,6 +70,9 @@ Route::prefix('siakad')->group(function () {
         Route::get('/presensi', [PresensiDosenController::class, 'index'])->name('dosen.presensi');
         Route::get('/rekap-presensi/{id}', [PresensiDosenController::class, 'rekapAbsen'])->name('dosen.rekap_absen');
         Route::put('/toggle_absensi/{id}', [PresensiDosenController::class, 'toggleAbsensi'])->name('dosen.toggle_absensi');
+        Route::get('/input_nilai', [InputNilaiController::class, 'index'])->name('dosen.input.nilai');
+        Route::get('/input_nilai/detail/{id}', [InputNilaiController::class, 'inputDetail'])->name('dosen.input.detail');
+        Route::post('/input_nilai/detail/', [InputNilaiController::class, 'inputNilai'])->name('post.dosen.input.nilai');
         Route::get('/konfirmasi_krs', [KonfirmasiMatkulController::class, 'index'])->name('dosen.konfirmasi_krs');
         Route::get('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'konfirmasi'])->name('dosen.konfirmasi_krs_detail');
         Route::post('/konfirmasi_krs/{id}', [KonfirmasiMatkulController::class, 'update'])->name('post.dosen.konfirmasi_krs');
