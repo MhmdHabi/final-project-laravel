@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\DospemExport;
 use App\Http\Controllers\Controller;
 use App\Models\DosenPA;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DospemController extends Controller
 {
@@ -103,5 +105,10 @@ class DospemController extends Controller
         $dosenPA->delete();
 
         return redirect()->route('admin.data_dospem')->with('success', 'Dosen Pembimbing berhasil dihapus');
+    }
+
+    public function exportDospem(Request $request)
+    {
+        return Excel::download(new DospemExport($request), 'Data Dospem.xlsx');
     }
 }

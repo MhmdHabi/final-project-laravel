@@ -7,7 +7,7 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">Konfirmasi Aktifasi Mata Kuliah</h1>
         </div>
-        <div class=" mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">

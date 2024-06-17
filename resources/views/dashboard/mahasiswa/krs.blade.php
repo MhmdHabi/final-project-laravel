@@ -14,27 +14,17 @@
                 <a href="{{ route('mahasiswa.pdf') }}" class="border py-1 px-4 text-white bg-[#2e4765] rounded"
                     target="_blank"><i class="fa-solid fa-file-pdf mr-2 text-white"></i>Cetak Pdf</a>
             </div>
-            <table class="min-w-full border-collapse border border-gray-200 ">
+            <table class="min-w-full border-collapse border border-gray-200">
                 <thead class="bg-gray-300">
                     <tr>
-                        <th class=" px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            No</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Kode MK</th>
-                        <th class="px-3 py-3 border border-gray-400 txet-left text-md text-black">
-                            Nama MK</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            SKS</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Kelas</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Ruangan</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Jadwal</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Dosen</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">
-                            Status</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">No</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Kode MK</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black w-32">Nama MK</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">SKS</th>
+                        <th class="px-1 py-3 border border-gray-400 text-left text-md text-black text-center">Kelas</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Jadwal</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Dosen</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Status</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -46,16 +36,16 @@
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kode_mk }}
                             </td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->nama_mk }}
+                            <td class="px-2 py-4 border border-gray-400 whitespace-nowrap w-32">
+                                {{ $krsan->matkul->nama_mk }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                                {{ $krsan->matkul->sks }}</td>
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kelas }},
+                                Ruangan {{ $krsan->matkul->ruangan }}</td>
+                            <td class="px-3 py-2 border border-gray-400 whitespace-nowrap w-20">
+                                {{ strftime('%A, %d %B %Y, %H:%M', strtotime($krsan->matkul->jadwal)) }} WIB
                             </td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->sks }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kelas }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->ruangan }}
-                            </td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
-                                {{ date('l, H:i', strtotime($krsan->matkul->jadwal)) }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
-                                {{ $krsan->matkul->dosen->name }}
+                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->dosen->name }}
                             </td>
                             <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
                                 @if ($krsan->status === 'Menunggu')
@@ -72,14 +62,14 @@
                         @endphp
                     @endforeach
                     <tr>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">Total SKS
-                            diambil
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">Total SKS diambil
                         </td>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">
                             {{ $totalSKS }}/24</td>
                     </tr>
                 </tbody>
             </table>
+
         </div>
     </div>
 @endsection

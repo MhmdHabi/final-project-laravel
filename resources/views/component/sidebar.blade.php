@@ -1,6 +1,6 @@
 <div class="sidebar bg-[#13947D] text-white md:w-[245px] lg:w-64 fixed h-full hidden md:block" id="side_nav">
     <div class="header-box flex justify-between border-b-2">
-        <div class="flex">
+        <div class="flex px-2">
             <img id="profile-picture" src="{{ asset('asset/logo_siakad.jpg') }}" alt="Profile Picture"
                 class="w-12 lg:w-18 object-cover p-0">
             <h3 class="my-auto text-md lg:text-lg font-bold ml-3 font-[Oswald]">Universitas <span

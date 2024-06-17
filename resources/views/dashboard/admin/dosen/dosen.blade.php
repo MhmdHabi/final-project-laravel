@@ -45,7 +45,7 @@
                     class="px-4 py-2 bg-[#13947D] text-white rounded-md w-full mb-2">Tambah</button></a>
             <a href="{{ route('export.dosen') }}"><button
                     class="px-4 py-2 bg-amber-500 text-white rounded-md w-full mb-2"><i
-                        class="fa-solid fa-print mr-2 text-white"></i>Cetak</button></a>
+                        class="fa-solid fa-print mr-2 text-white"></i>Export</button></a>
         </div>
 
         {{-- Tabel Data Dosen --}}

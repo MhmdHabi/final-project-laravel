@@ -6,14 +6,14 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class DosenExport implements FromCollection, WithHeadings
+class DospemExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        $query = User::select('id', 'nidn', 'name', 'email', 'no_hp', 'gender', 'jabatan', 'alamat')
+        $query = User::select('id', 'nidn', 'name', 'email', 'jabatan')
             ->whereNotNull('nidn')
             ->get();
         return $query;
@@ -27,9 +27,7 @@ class DosenExport implements FromCollection, WithHeadings
             'Nama',
             'Email',
             'Nomor Hp',
-            'Jenis Kelamin',
             'Jabatan Akademik',
-            'Alamat'
         ];
         return $heading;
     }

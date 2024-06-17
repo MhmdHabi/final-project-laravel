@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\KonfirmPayExport;
 use App\Http\Controllers\Controller;
 use App\Models\AktifasiMatkul;
 use App\Models\Buku;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -252,5 +254,10 @@ class AdminController extends Controller
         $pembayaran = Pembayaran::findOrFail($id);
 
         return view('dashboard.admin.admin.bukti_pembayaran', compact('pembayaran'));
+    }
+
+    public function exportPembayaran(Request $request)
+    {
+        return Excel::download(new KonfirmPayExport($request), 'Data Konfirmasi Pembayaran Mahasiswa.xlsx');
     }
 }

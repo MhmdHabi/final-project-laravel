@@ -84,7 +84,6 @@ class MahasiswaController extends Controller
             'alamat' => 'required|string',
             'jurusan' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status_kuliah' => 'required|in:aktif,non-aktif',
         ]);
 
         if ($validator->fails()) {
@@ -113,7 +112,6 @@ class MahasiswaController extends Controller
             'agama' => $request->agama,
             'alamat' => $request->alamat,
             'jurusan' => $request->jurusan,
-            'status_kuliah' => $request->status_kuliah,
             'password' => $request->password ? Hash::make($request->password) : $mahasiswa->password,
         ]);
 

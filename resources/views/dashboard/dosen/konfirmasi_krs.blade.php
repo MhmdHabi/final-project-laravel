@@ -18,7 +18,8 @@
                             <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">NIM</th>
                             <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Semester</th>
                             <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Status</th>
-                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Action</th>
+                            <th class="px-3 py-3 border border-gray-400 text-left text-md text-black text-center">Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -30,7 +31,7 @@
                                 <td class="px-3 py-4 border border-gray-400">{{ $krs->semester->semester }} -
                                     {{ $krs->semester->akademik_id }}</td>
                                 <td class="px-3 py-4 border border-gray-400">{{ $krs->status }}</td>
-                                <td class="px-3 py-4 border border-gray-400">
+                                <td class="px-3 py-4 border border-gray-400 text-center">
                                     <a href="{{ route('dosen.konfirmasi_krs_detail', ['id' => $krs->id]) }}"
                                         class="px-4 py-2 bg-cyan-500 text-white rounded-md mb-2 inline-block text-center">Lihat</a>
                                     <form action="{{ route('hapus.krs', ['id' => $krs->id]) }}" method="POST"

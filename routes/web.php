@@ -119,6 +119,7 @@ Route::prefix('siakad')->group(function () {
             Route::put('/data_dospem/update/{id}', [DospemController::class, 'updateDospem'])->name('admin.data_dospem.update');
             Route::delete('/data_dospem/delete_dospem/{id}', [DospemController::class, 'deleteDospem'])->name('admin.data_dospem.delete_dospem');
             Route::delete('/data_dospem/delete_mhs/{id}', [DospemController::class, 'deleteMhs'])->name('admin.data_dospem.delete_mhs');
+            Route::get('/export_dospem', [DospemController::class, 'exportDospem'])->name('export.dospem');
         });
 
         // CRUD Admin
@@ -144,6 +145,7 @@ Route::prefix('siakad')->group(function () {
         Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
         Route::get('/pembukaan_matkul', [AdminController::class, 'pembukaanMatkul'])->name('admin.pembukaan_matkul');
         Route::get('/toggle_aktif', [AdminController::class, 'toggle'])->name('admin.toggle_aktif');
+        Route::get('/export_konfirmasi-pembayaran', [AdminController::class, 'exportPembayaran'])->name('export.konfirmasi_pembayaran');
     });
 
     Route::post('logout', [HomeController::class, 'logout'])->name('logout');
