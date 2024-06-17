@@ -7,20 +7,23 @@ use App\Models\Krs;
 use App\Models\MatkulKrs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KhsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-
         $mahasiswaId = Auth::user()->id;
 
         $status = Krs::where('mahasiswa_id', $mahasiswaId)
-            ->where('status', 'Disetujui')->latest()
+            ->where('status', 'Disetujui')
+            ->latest()
             ->first();
 
         if ($status && $status->status === 'Disetujui') {
-            $latestKhs = Krs::where('mahasiswa_id', $mahasiswaId)->latest()->first();
+            $latestKhs = Krs::where('mahasiswa_id', $mahasiswaId)
+                ->latest()
+                ->first();
 
             if ($latestKhs) {
                 $khs = MatkulKrs::where('krs_id', $latestKhs->id)->get();
@@ -61,11 +64,27 @@ class KhsController extends Controller
                     $ipk = $totalNilai / $totalSKS;
                 }
 
+                if ($request->get('export') == 'pdf') {
+                    $data = [
+                        'khs' => $khs,
+                        'status' => $status,
+                        'ipk' => $ipk,
+                    ];
+
+                    $pdf = Pdf::loadView('dashboard.mahasiswa.pdf.khsmahasiswa', $data);
+                    return $pdf->stream('KHS_Mahasiswa.pdf');
+                }
+
                 return view('dashboard.mahasiswa.khs', compact('khs', 'status', 'ipk'));
             }
         } else {
             return view('dashboard.mahasiswa.khs', compact('status'))
                 ->with('error', 'Kontrak Matkul belum disetujui.');
         }
+    }
+
+    public function pdf(Request $request)
+    {
+        return redirect()->route('mahasiswa.khs.index', ['export' => 'pdf']);
     }
 }

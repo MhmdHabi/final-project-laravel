@@ -7,10 +7,11 @@ use App\Models\Krs;
 use App\Models\MatkulKrs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KrsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $mahasiswaId = Auth::user()->id;
 
@@ -21,7 +22,17 @@ class KrsController extends Controller
         } else {
             $krs = MatkulKrs::where('krs_id', $latestKrs->id)->get();
         }
+        if ($request->get('export') == 'pdf') {
+            $data = [
+                'krs' => $krs,
+                'latestKrs' => $latestKrs,
+                'mahasiswaId' => $mahasiswaId,
+            ];
 
+           
+            $pdf = Pdf::loadView('dashboard.mahasiswa.pdf.khsmahasiswa', $data);
+            return $pdf->stream('krs.pdf');
+        }
         return view('dashboard.mahasiswa.krs', compact('krs'));
     }
 }
