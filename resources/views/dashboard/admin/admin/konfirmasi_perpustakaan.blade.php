@@ -43,7 +43,7 @@
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-[#13947D]">
+                    <thead class="bg-[#0463CA]">
                         <tr>
                             <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">No</th>
                             <th class="px-3 py-3 border border-gray-400 text-left text-md text-white">NIM</th>

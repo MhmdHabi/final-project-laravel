@@ -38,7 +38,7 @@
         <div class="flex px-5 justify-between items-center mb-5">
             <div class="flex gap-3">
                 <a href="{{ route('admin.data_mahasiswa.add') }}">
-                    <button class="px-4 py-2 bg-[#13947D] text-white rounded-md mb-2">Tambah</button>
+                    <button class="px-4 py-2 bg-[#0463CA] text-white rounded-md mb-2">Tambah</button>
                 </a>
                 <a href="{{ route('export.mahasiswa') }}"><button
                         class="px-4 py-2 bg-amber-500 text-white rounded-md w-full mb-2"><i
@@ -56,7 +56,7 @@
         <div class="px-5 pb-2">
             <div class="overflow-x-auto w-full">
                 <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                    <thead class="bg-[#13947D]">
+                    <thead class="bg-[#0463CA]">
                         <tr>
                             <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">No</th>
                             <th class="px-3 py-3 border border-gray-300 text-left text-md text-white">NIM</th>

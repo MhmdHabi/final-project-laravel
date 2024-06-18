@@ -162,7 +162,7 @@ class AdminController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('admin.buku_add')
+            return redirect()->route('admin.data_buku.add')
                 ->withErrors($validator)
                 ->withInput();
         }

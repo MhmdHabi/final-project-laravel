@@ -11,7 +11,7 @@
         {{-- tabel Krs --}}
         <div class=" px-5 pb-2 overflow-auto">
             <div class="flex justify-end mb-1">
-                <a href="{{ route('mahasiswa.krs', ['export' => 'pdf']) }}"
+                <a href="{{ route('mahasiswa.pdf.krs') }}" target="_blank"
                     class="border py-1 px-4 text-white bg-[#2e4765] rounded"><i
                         class="fa-solid fa-file-pdf mr-2 text-white"></i>Cetak Pdf</a>
             </div>
@@ -20,7 +20,7 @@
                     <tr>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">No</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Kode MK</th>
-                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black w-32">Nama MK</th>
+                        <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Nama MK</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">SKS</th>
                         <th class="px-1 py-3 border border-gray-400 text-left text-md text-black text-center">Kelas</th>
                         <th class="px-3 py-3 border border-gray-400 text-left text-md text-black">Jadwal</th>
@@ -34,21 +34,26 @@
                     @endphp
                     @foreach ($krs as $index => $krsan)
                         <tr>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kode_mk }}
+                            <td class="px-3 py-4 border border-gray-400">{{ $index + 1 }}</td>
+                            <td class="px-3 py-4 border border-gray-400">{{ $krsan->matkul->kode_mk }}
                             </td>
-                            <td class="px-2 py-4 border border-gray-400 whitespace-nowrap w-32">
+                            <td class="px-2 py-4 border border-gray-400">
                                 {{ $krsan->matkul->nama_mk }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap text-center">
+                            <td class="px-3 py-4 border border-gray-400 text-center">
                                 {{ $krsan->matkul->sks }}</td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->kelas }},
+                            <td class="px-3 py-4 border border-gray-400">{{ $krsan->matkul->kelas }},
                                 Ruangan {{ $krsan->matkul->ruangan }}</td>
-                            <td class="px-3 py-2 border border-gray-400 whitespace-nowrap w-20">
-                                {{ strftime('%A, %d %B %Y, %H:%M', strtotime($krsan->matkul->jadwal)) }} WIB
+                            <td class="px-3 py-2 border border-gray-400">
+                                @php
+                                    $jadwal = strtotime($krsan->matkul->jadwal);
+                                    $tanggal = strftime('%A, %d %B %Y', $jadwal);
+                                    $waktu = strftime('%H:%M', $jadwal);
+                                @endphp
+                                {{ $tanggal }}<br>{{ $waktu }} WIB
                             </td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $krsan->matkul->dosen->name }}
+                            <td class="px-3 py-4 border border-gray-400">{{ $krsan->matkul->dosen->name }}
                             </td>
-                            <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                            <td class="px-3 py-4 border border-gray-400 w-10">
                                 @if ($krsan->status === 'Menunggu')
                                     <span class="px-2 py-1 bg-amber-500 text-white rounded-md">{{ $krsan->status }}</span>
                                 @elseif ($krsan->status === 'Disetujui')
@@ -65,8 +70,10 @@
                     <tr>
                         <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">Total SKS diambil
                         </td>
-                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="1">
                             {{ $totalSKS }}/24</td>
+                        <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="4">
+                            Semester Ke {{ $semesterId }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -10,8 +10,8 @@
         <div class="flex flex-wrap mx-4">
             <!-- Card 1 -->
             <div class="w-full md:w-1/3 px-4 mb-8">
-                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
-                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank BNI</h2>
+                <div class=" rounded-lg p-4 shadow-lg">
+                    <img src="{{ asset('asset/logo_bni.png') }}" alt="" class="w-24">
                     <p class="">a.n. Universitas Academy</p>
                     <p class="font-semibold">No Rek: 1234567890</p>
                 </div>
@@ -19,8 +19,8 @@
 
             <!-- Card 2 -->
             <div class="w-full md:w-1/3 px-4 mb-8">
-                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
-                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank BRI</h2>
+                <div class="rounded-lg p-4 shadow-lg">
+                    <img src="{{ asset('asset/logo_bri.png') }}" alt="" class="w-20">
                     <p class="">a.n. Universitas Academy</p>
                     <p class="font-semibold">No Rek: 0987654321</p>
                 </div>
@@ -28,8 +28,8 @@
 
             <!-- Card 3 -->
             <div class="w-full md:w-1/3 px-4 mb-8">
-                <div class="bg-[#13947D] text-white rounded-lg p-4 shadow-lg">
-                    <h2 class="text-lg font-bold mb-1 font-[Poppins]">Bank Mandiri</h2>
+                <div class="rounded-lg p-4 shadow-lg">
+                    <img src="{{ asset('asset/logo_mandiri.png') }}" alt="" class="w-24">
                     <p class="">a.n. Universitas Academy</p>
                     <p class="font-semibold">No Rek: 1122334455</p>
                 </div>
@@ -48,8 +48,6 @@
                 <a href="{{ route('mahasiswa.konfirm_pembayaran') }}"
                     class="border py-1 px-4 text-white bg-[#2e4765] rounded mr-2"><i
                         class="fa-solid fa-money-check-dollar mr-2 text-white"></i>Konfirmasi Pembayaran</a>
-                <a href="#" class="border py-1 px-4 text-white bg-[#2e4765] rounded"><i
-                        class="fa-solid fa-print mr-2 text-white"></i>Cetak</a>
             </div>
             <table class="min-w-full border-collapse border border-gray-200 whitespace-nowrap overflow-x-auto">
                 <thead class="bg-gray-300">

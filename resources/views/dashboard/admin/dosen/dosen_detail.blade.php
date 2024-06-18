@@ -10,7 +10,7 @@
         </div>
         <div class="lg:flex sm:block">
             @if ($dosen->image)
-                <img src="{{ asset('storage/image_mahasiswa/' . $dosen->image) }}" alt=""
+                <img src="{{ asset(str_replace('public/', 'storage/', $dosen->image)) }}" alt=""
                     class="w-52 object-cover h-56 m-3">
             @else
                 <img src="{{ asset('asset/default_profile.png') }}" alt="" class="w-52 object-cover h-56 m-3">

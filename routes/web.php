@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/tentang_kami', [HomeController::class, 'team'])->name('dashboard.team');
 Route::get('/login/mahasiswa', [HomeController::class, 'formLoginMahasiswa'])->name('login.mahasiswa');
 Route::post('/login/mahasiswa', [HomeController::class, 'loginMahasiswa'])->name('post.login.mahasiswa');
 Route::get('/login/dosen', [HomeController::class, 'formLoginDosen'])->name('login.dosen');
@@ -61,7 +62,9 @@ Route::prefix('siakad')->group(function () {
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
         Route::post('/konfirmasi_pembayaran', [TagihanController::class, 'pembayaranStore'])->name('mahasiswa.konfirmasi_pembayaran.store');
-        Route::get('/krs/pdf', [PdfController::class, 'index'])->name('mahasiswa.pdf');
+        Route::get('/krs/pdf', [PdfController::class, 'index'])->name('mahasiswa.pdf.krs');
+        Route::get('/khs/pdf', [PdfController::class, 'khsExport'])->name('mahasiswa.pdf.khs');
+        Route::get('/transkip/pdf', [PdfController::class, 'transkipExport'])->name('mahasiswa.pdf.transkip');
     });
 
     // dosen

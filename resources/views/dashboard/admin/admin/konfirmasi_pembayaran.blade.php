@@ -48,7 +48,7 @@
         {{-- Tabel Konfirmasi Pembayaran --}}
         <div class="px-5 pb-2">
             <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                <thead class="bg-[#13947D] text-white">
+                <thead class="bg-[#0463CA] text-white">
                     <tr>
                         <th class="px-3 py-3 border border-gray-300 text-md text-center">No</th>
                         <th class="px-3 py-3 border border-gray-300 text-md text-center">NIM Mahasiswa</th>

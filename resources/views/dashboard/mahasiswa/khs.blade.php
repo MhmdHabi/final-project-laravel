@@ -29,10 +29,14 @@
                         @foreach ($khs as $index => $khsan)
                             <tr>
                                 <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $index + 1 }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->kode_mk }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->nama_mk }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->sks }}</td>
-                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->dosen->name }}</td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->kode_mk }}
+                                </td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->nama_mk }}
+                                </td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->matkul->sks }}
+                                </td>
+                                <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">
+                                    {{ $khsan->matkul->dosen->name }}</td>
                                 <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->grade }}</td>
                                 <td class="px-3 py-4 border border-gray-400 whitespace-nowrap">{{ $khsan->nilai }}</td>
                             </tr>
@@ -41,11 +45,7 @@
                             @endphp
                         @endforeach
                         <tr>
-                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="4">
-                                <a href="{{ route('mahasiswa.khs', ['export' => 'pdf']) }}"
-                                   class="border py-2 px-3 text-white bg-[#2e4765] rounded">
-                                    <i class="fa-solid fa-print mr-2 text-white"></i>Cetak
-                                </a>
+                            <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="3">
                             </td>
                             <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold">{{ $totalSKS }} SKS</td>
                             <td class="px-3 py-4 border border-gray-400 bg-gray-300 font-bold" colspan="6">

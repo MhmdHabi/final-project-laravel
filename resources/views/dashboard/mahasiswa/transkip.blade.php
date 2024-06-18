@@ -10,8 +10,9 @@
 
         <div class="px-5 pb-2">
             <div class="flex justify-end mb-1">
-                <a href="#" class="border py-1 px-4 text-white bg-[#2e4765] rounded"><i
-                        class="fa-solid fa-print mr-2 text-white"></i>Cetak</a>
+                <a href="{{ route('mahasiswa.pdf.transkip') }}" target="_blank"
+                    class="border py-1 px-4 text-white bg-[#2e4765] rounded"><i
+                        class="fa-solid fa-file-pdf mr-2 text-white"></i>Cetak Pdf</a>
             </div>
             <div class="flex py-1">
                 <p class="w-36">Nim</p>

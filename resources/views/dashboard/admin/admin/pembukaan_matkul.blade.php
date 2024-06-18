@@ -43,7 +43,7 @@
                 <form action="{{ route('admin.toggle_aktif') }}" method="GET">
                     <button type="submit"
                         class="px-4 py-2 font-bold text-white rounded 
-                        @if (!App\Models\AktifasiMatkul::first()->is_open) bg-[#13947D] hover:bg-green-700 
+                        @if (!App\Models\AktifasiMatkul::first()->is_open) bg-[#0463CA] hover:bg-green-700 
                         @else
                             bg-red-500 hover:bg-red-700 @endif">
                         @if (!App\Models\AktifasiMatkul::first()->is_open)

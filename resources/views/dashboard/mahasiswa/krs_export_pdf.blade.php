@@ -6,6 +6,10 @@
     <title>{{ $title }}</title>
 
     <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
         .invoice-box {
             max-width: 800px;
             margin: auto;
@@ -13,7 +17,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
             font-size: 16px;
             line-height: 24px;
-            font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
             color: #555;
         }
 
@@ -168,6 +171,7 @@
                                 Nama Mahasiswa : {{ $name }}<br />
                                 Nim : {{ $nim }}<br />
                                 Jurusan : {{ $jurusan }} <br>
+                                Semester : {{ $semesterId }} <br>
                                 Jenjang Studi : Strata 1
                             </td>
 
