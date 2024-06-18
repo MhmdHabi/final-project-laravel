@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card-body shadow-[0px_5px_60px_-15px_rgba(0,0,0,0.4)] px-3 rounded py-5">
-        <div class=" mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div id="successMessage"

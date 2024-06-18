@@ -7,7 +7,7 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">INPUT NILAI MAHASISWA</h1>
         </div>
-        <div class="mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -38,12 +38,7 @@
         </div>
 
         {{-- tabel presensi --}}
-        <div class="px-5 pb-2 overflow-x-auto">
-            <div class="flex justify-end mb-1">
-                <a href="#" class="border py-2 px-4 text-white bg-[#2e4765] rounded">
-                    <i class="fa-solid fa-print mr-2 text-white"></i>Cetak
-                </a>
-            </div>
+        <div class="px-5 pb-2 overflow-x-auto mb-2">
             <table class="min-w-full border-collapse border border-gray-200 whitespace-nowrap">
                 <thead class="bg-gray-300">
                     <tr>
@@ -77,4 +72,8 @@
             </table>
         </div>
     </div>
+
+    {{-- Jquery Start --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/sessionTime.js') }}"></script>
 @endsection

@@ -40,6 +40,6 @@ class Krs extends Model
 
     public function matkulKrs()
     {
-        return $this->hasMany(MatkulKrs::class);
+        return $this->hasMany(MatkulKrs::class, 'krs_id');
     }
 }

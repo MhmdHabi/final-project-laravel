@@ -1,6 +1,6 @@
 <header class="px-10 flex justify-center mt-3">
     <nav
-        class="navbar bg-[#13947D] shadow-lg rounded-lg text-white px-4 py-3 fixed w-full md:w-[calc(100%-315px)] z-10 flex justify-between overflow-x-visible ">
+        class="navbar bg-[#0463CA] shadow-lg rounded-lg text-white px-4 py-3 fixed w-full md:w-[calc(100%-315px)] z-10 flex justify-between overflow-x-visible ">
         <div class="navbar-top flex">
             <button class="btn-menu block md:hidden px-1 py-0 open-btn"><i class="fa-solid fa-bars"></i></button>
             <h1 class="ml-4 font-bold lg:text-2xl md:text-lg my-auto">@yield('judul')</h1>
@@ -17,22 +17,22 @@
                 @auth
                     @if (Auth::user()->roles[0]->name == 'mahasiswa')
                         <a href="{{ route('mahasiswa.profil') }}"
-                            class="text-[#2e4765] mb-2 hover:text-white hover:bg-[#13947D] hover:rounded hover:py-1"><i
+                            class="text-[#2e4765] mb-2 hover:text-white hover:bg-[#0463CA] hover:rounded hover:py-1"><i
                                 class="fa-regular fa-user mr-3 ml-2"></i>Edit Profile</a>
                     @elseif (Auth::user()->roles[0]->name == 'dosen')
                         <a href="{{ route('dosen.profil') }}"
-                            class="text-[#13947D] mb-2 hover:text-white hover:bg-[#13947D] hover:rounded hover:py-1"><i
+                            class="text-[#13947D] mb-2 hover:text-white hover:bg-[#0463CA] hover:rounded hover:py-1"><i
                                 class="fa-regular fa-user mr-3 ml-2"></i>Edit Profile</a>
                     @elseif (Auth::user()->roles[0]->name == 'admin')
                         <a href=""
-                            class="text-[#13947D] mb-2 hover:text-white hover:bg-[#13947D] hover:rounded hover:py-1"><i
+                            class="text-[#13947D] mb-2 hover:text-white hover:bg-[#0463CA] hover:rounded hover:py-1"><i
                                 class="fa-regular fa-user mr-3 ml-2"></i>Edit Profile</a>
                     @endif
                 @endauth
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
-                        class="text-[#2e4765] hover:text-white hover:bg-[#13947D] hover:rounded hover:py-1 w-full text-left"><i
+                        class="text-[#2e4765] hover:text-white hover:bg-[#0463CA] hover:rounded hover:py-1 w-full text-left"><i
                             class="fa-solid fa-right-from-bracket mr-3 ml-2"></i>Logout</button>
                 </form>
             </div>

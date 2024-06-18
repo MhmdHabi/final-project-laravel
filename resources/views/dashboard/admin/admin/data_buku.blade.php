@@ -48,7 +48,7 @@
                     Tambah Buku</a>
             </div>
             <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                <thead class="bg-[#13947D]">
+                <thead class="bg-[#0463CA]">
                     <tr>
                         <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">No</th>
                         <th class="px-3 py-3 border border-gray-300 text-left text-md text-white text-center">Judul</th>

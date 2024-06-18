@@ -19,6 +19,7 @@ use App\Http\Controllers\Mahasiswa\ProfilController;
 use App\Http\Controllers\Mahasiswa\PresensiController;
 use App\Http\Controllers\Mahasiswa\TagihanController;
 use App\Http\Controllers\Mahasiswa\TranskipController;
+use App\Http\Controllers\Mahasiswa\PdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/tentang_kami', [HomeController::class, 'team'])->name('dashboard.team');
 Route::get('/login/mahasiswa', [HomeController::class, 'formLoginMahasiswa'])->name('login.mahasiswa');
 Route::post('/login/mahasiswa', [HomeController::class, 'loginMahasiswa'])->name('post.login.mahasiswa');
 Route::get('/login/dosen', [HomeController::class, 'formLoginDosen'])->name('login.dosen');
@@ -60,6 +62,9 @@ Route::prefix('siakad')->group(function () {
         Route::get('/tagihan_mahasiswa', [TagihanController::class, 'index'])->name('mahasiswa.tagihan');
         Route::get('/tagihan_mahasiswa/konfirm_pembayaran', [TagihanController::class, 'konfirm_pembayaran'])->name('mahasiswa.konfirm_pembayaran');
         Route::post('/konfirmasi_pembayaran', [TagihanController::class, 'pembayaranStore'])->name('mahasiswa.konfirmasi_pembayaran.store');
+        Route::get('/krs/pdf', [PdfController::class, 'index'])->name('mahasiswa.pdf.krs');
+        Route::get('/khs/pdf', [PdfController::class, 'khsExport'])->name('mahasiswa.pdf.khs');
+        Route::get('/transkip/pdf', [PdfController::class, 'transkipExport'])->name('mahasiswa.pdf.transkip');
     });
 
     // dosen
@@ -117,6 +122,7 @@ Route::prefix('siakad')->group(function () {
             Route::put('/data_dospem/update/{id}', [DospemController::class, 'updateDospem'])->name('admin.data_dospem.update');
             Route::delete('/data_dospem/delete_dospem/{id}', [DospemController::class, 'deleteDospem'])->name('admin.data_dospem.delete_dospem');
             Route::delete('/data_dospem/delete_mhs/{id}', [DospemController::class, 'deleteMhs'])->name('admin.data_dospem.delete_mhs');
+            Route::get('/export_dospem', [DospemController::class, 'exportDospem'])->name('export.dospem');
         });
 
         // CRUD Admin
@@ -142,6 +148,7 @@ Route::prefix('siakad')->group(function () {
         Route::post('/konfirmasi_perpustakaan/{id}', [AdminController::class, 'konfirmasiBuku'])->name('post.admin.konfirmasi_perpustakaan');
         Route::get('/pembukaan_matkul', [AdminController::class, 'pembukaanMatkul'])->name('admin.pembukaan_matkul');
         Route::get('/toggle_aktif', [AdminController::class, 'toggle'])->name('admin.toggle_aktif');
+        Route::get('/export_konfirmasi-pembayaran', [AdminController::class, 'exportPembayaran'])->name('export.konfirmasi_pembayaran');
     });
 
     Route::post('logout', [HomeController::class, 'logout'])->name('logout');

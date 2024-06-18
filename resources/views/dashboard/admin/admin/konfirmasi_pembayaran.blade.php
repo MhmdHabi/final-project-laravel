@@ -39,10 +39,16 @@
             @endif
         </div>
 
+        <div class="flex px-5 gap-3">
+            <a href="{{ route('export.konfirmasi_pembayaran') }}"><button
+                    class="px-4 py-2 bg-amber-500 text-white rounded-md w-full mb-2"><i
+                        class="fa-solid fa-print mr-2 text-white"></i>Export</button></a>
+        </div>
+
         {{-- Tabel Konfirmasi Pembayaran --}}
         <div class="px-5 pb-2">
             <table class="min-w-full divide-y divide-gray-200" id="datatable">
-                <thead class="bg-[#13947D] text-white">
+                <thead class="bg-[#0463CA] text-white">
                     <tr>
                         <th class="px-3 py-3 border border-gray-300 text-md text-center">No</th>
                         <th class="px-3 py-3 border border-gray-300 text-md text-center">NIM Mahasiswa</th>

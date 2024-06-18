@@ -15,31 +15,30 @@ class KrsController extends Controller
     {
         $mahasiswaId = Auth::user()->id;
 
+        // Mengambil KRS terbaru
         $latestKrs = Krs::where('mahasiswa_id', $mahasiswaId)->latest()->first();
 
         if (!$latestKrs) {
             $krs = collect();
+            $semesterId = null; // Default value jika tidak ada KRS
         } else {
             $krs = MatkulKrs::where('krs_id', $latestKrs->id)->get();
+            $semesterId = $latestKrs->semester_id; // Ambil semester_id dari KRS terbaru
         }
 
-        // Jika permintaan untuk export PDF, maka persiapkan data untuk ditampilkan dalam PDF
         if ($request->get('export') == 'pdf') {
-            // Ambil data yang diperlukan untuk PDF
             $data = [
                 'krs' => $krs,
                 'latestKrs' => $latestKrs,
                 'mahasiswaId' => $mahasiswaId,
+                'semesterId' => $semesterId, // Tambahkan semester_id dalam data
             ];
 
-            // Load view 'khsmahasiswa.blade.php' dengan data yang diperlukan
-            $pdf = Pdf::loadView('dashboard.mahasiswa.pdf.khsmahasiswa', $data);
-
-            // Unduh file PDF dengan nama 'krs.pdf'
-            return $pdf->stream('krs.pdf');
+            $pdf = PDF::loadView('dashboard.mahasiswa.krs_export_pdf', $data);
+            $namaFile = 'kartu_rancangan_studi' . '_' . Auth::user()->name . '_' . Auth::user()->nim . '.pdf';
+            return $pdf->stream($namaFile);
         }
 
-        // Jika bukan permintaan untuk export PDF, tampilkan halaman krs.blade.php dengan data krs
-        return view('dashboard.mahasiswa.krs', compact('krs'));
+        return view('dashboard.mahasiswa.krs', compact('krs', 'semesterId'));
     }
 }

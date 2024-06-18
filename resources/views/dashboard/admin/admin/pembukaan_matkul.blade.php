@@ -7,7 +7,7 @@
         <div class="flex mb-3 justify-center">
             <h1 class="font-bold text-xl">Konfirmasi Aktifasi Mata Kuliah</h1>
         </div>
-        <div class=" mb-3">
+        <div class="px-5 mb-3">
             {{-- Notifikasi Success --}}
             @if (session('success'))
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -43,7 +43,7 @@
                 <form action="{{ route('admin.toggle_aktif') }}" method="GET">
                     <button type="submit"
                         class="px-4 py-2 font-bold text-white rounded 
-                        @if (!App\Models\AktifasiMatkul::first()->is_open) bg-[#13947D] hover:bg-green-700 
+                        @if (!App\Models\AktifasiMatkul::first()->is_open) bg-[#0463CA] hover:bg-green-700 
                         @else
                             bg-red-500 hover:bg-red-700 @endif">
                         @if (!App\Models\AktifasiMatkul::first()->is_open)
