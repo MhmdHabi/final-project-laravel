@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DosenPA;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -51,12 +52,24 @@ class DospemController extends Controller
                 ->withInput();
         }
 
-        DosenPA::create([
-            'dospem_id' => $request->dospem_id,
-            'mahasiswa_id' => $request->mahasiswa_id,
-        ]);
+        DB::beginTransaction();
 
-        return redirect()->route('admin.data_dospem')->with('success', 'Mahasiswa Dosen Pembimbing berhasil ditambahkan');
+        try {
+            DosenPA::create([
+                'dospem_id' => $request->dospem_id,
+                'mahasiswa_id' => $request->mahasiswa_id,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_dospem')->with('success', 'Mahasiswa Dosen Pembimbing berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('admin.data_dospem.add')
+                ->withErrors(['error' => 'Gagal menambahkan Mahasiswa Dosen Pembimbing: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
     public function editDospem($id)

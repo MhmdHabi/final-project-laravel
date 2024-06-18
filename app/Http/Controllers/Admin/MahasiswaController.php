@@ -6,6 +6,7 @@ use App\Exports\MahasiswaExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -41,27 +42,38 @@ class MahasiswaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            dd($validator->errors());
             return redirect()->route('admin.data_mahasiswa.add')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        $user = User::create([
-            'nim' => $request->nim,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'gender' => $request->gender,
-            'tgl_lahir' => $request->tgl_lahir,
-            'agama' => $request->agama,
-            'jurusan' => $request->jurusan,
-            'status_kuliah' => $request->status_kuliah,
-        ]);
+        DB::beginTransaction();
 
-        $user->assignRole($request->role);
+        try {
+            $user = User::create([
+                'nim' => $request->nim,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'gender' => $request->gender,
+                'tgl_lahir' => $request->tgl_lahir,
+                'agama' => $request->agama,
+                'jurusan' => $request->jurusan,
+                'status_kuliah' => $request->status_kuliah,
+            ]);
 
-        return redirect()->route('admin.data_mahasiswa')->with('success', 'Mahasiswa berhasil ditambahkan');
+            $user->assignRole($request->role);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_mahasiswa')->with('success', 'Mahasiswa berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('admin.data_mahasiswa.add')
+                ->withErrors(['error' => 'Gagal menambahkan mahasiswa: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
     public function editMahasiswa($id)
@@ -90,32 +102,42 @@ class MahasiswaController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $mahasiswa = User::findOrFail($id);
-        if ($request->hasFile('image')) {
-            if ($mahasiswa->image && Storage::exists($mahasiswa->image)) {
-                Storage::delete($mahasiswa->image);
+        DB::beginTransaction();
+
+        try {
+            $mahasiswa = User::findOrFail($id);
+
+            if ($request->hasFile('image')) {
+                if ($mahasiswa->image && Storage::exists($mahasiswa->image)) {
+                    Storage::delete($mahasiswa->image);
+                }
+
+                $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+                $imagePath = $request->file('image')->storeAs('public/image_mahasiswa', $fileName);
+                $mahasiswa->image = $imagePath;
             }
 
+            $mahasiswa->update([
+                'nim' => $request->nim,
+                'name' => $request->name,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'no_hp' => $request->no_hp,
+                'tgl_lahir' => $request->tgl_lahir,
+                'agama' => $request->agama,
+                'alamat' => $request->alamat,
+                'jurusan' => $request->jurusan,
+                'password' => $request->password ? Hash::make($request->password) : $mahasiswa->password,
+            ]);
 
-            $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $imagePath = $request->file('image')->storeAs('public/image_mahasiswa', $fileName);
-            $mahasiswa->image = $imagePath;
+            DB::commit();
+
+            return redirect()->route('admin.data_mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->withErrors(['error' => 'Gagal memperbarui data mahasiswa: ' . $e->getMessage()])->withInput();
         }
-
-        $mahasiswa->update([
-            'nim' => $request->nim,
-            'name' => $request->name,
-            'email' => $request->email,
-            'gender' => $request->gender,
-            'no_hp' => $request->no_hp,
-            'tgl_lahir' => $request->tgl_lahir,
-            'agama' => $request->agama,
-            'alamat' => $request->alamat,
-            'jurusan' => $request->jurusan,
-            'password' => $request->password ? Hash::make($request->password) : $mahasiswa->password,
-        ]);
-
-        return redirect()->route('admin.data_mahasiswa')->with('success', 'Data mahasiswa berhasil diperbarui');
     }
 
     public function detailMahasiswa($id)

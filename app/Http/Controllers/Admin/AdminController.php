@@ -10,6 +10,7 @@ use App\Models\Pembayaran;
 use App\Models\Pinjam;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -45,7 +46,7 @@ class AdminController extends Controller
         $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:50|unique:users',
             'email' => 'required|email|unique:users,email',
-            'name' => 'required|string|max:255|',
+            'name' => 'required|string|max:255',
             'password' => 'required|min:8|confirmed',
             'role' => 'required|in:mahasiswa,dosen,admin',
         ]);
@@ -56,16 +57,28 @@ class AdminController extends Controller
                 ->withInput();
         }
 
-        $user = User::create([
-            'username' => $request->username,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        DB::beginTransaction();
 
-        $user->assignRole($request->role);
+        try {
+            $user = User::create([
+                'username' => $request->username,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
-        return redirect()->route('admin.data_admin')->with('success', 'Admin berhasil ditambahkan');
+            $user->assignRole($request->role);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_admin')->with('success', 'Admin berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('admin.data_admin.add')
+                ->withErrors(['error' => 'Gagal menambahkan admin: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
     public function editAdmin($id)
     {
@@ -86,15 +99,26 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $admin = User::findOrFail($id);
+        DB::beginTransaction();
 
-        $admin->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'username' => $request->username,
-            'password' => $request->password ? Hash::make($request->password) : $admin->password,
-        ]);
-        return redirect()->route('admin.data_admin')->with('success', 'Data admin berhasil diperbarui');
+        try {
+            $admin = User::findOrFail($id);
+
+            $admin->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => $request->password ? Hash::make($request->password) : $admin->password,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_admin')->with('success', 'Data admin berhasil diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->withErrors(['error' => 'Gagal memperbarui data admin: ' . $e->getMessage()])->withInput();
+        }
     }
 
     public function deleteAdmin($id)
@@ -167,14 +191,26 @@ class AdminController extends Controller
                 ->withInput();
         }
 
-        $buku = Buku::create([
-            'judul' => $request->judul,
-            'pengarang' => $request->pengarang,
-            'deskripsi' => $request->deskripsi,
-            'stok' => $request->stok,
-        ]);
+        DB::beginTransaction();
 
-        return redirect()->route('admin.data_buku')->with('success', 'Buku berhasil ditambahkan');
+        try {
+            $buku = Buku::create([
+                'judul' => $request->judul,
+                'pengarang' => $request->pengarang,
+                'deskripsi' => $request->deskripsi,
+                'stok' => $request->stok,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_buku')->with('success', 'Buku berhasil ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('admin.data_buku.add')
+                ->withErrors(['error' => 'Gagal menambahkan buku: ' . $e->getMessage()])
+                ->withInput();
+        }
     }
 
     public function bukuEdit($id)
@@ -196,15 +232,26 @@ class AdminController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $buuku = Buku::findOrFail($id);
+        DB::beginTransaction();
 
-        $buuku->update([
-            'judul' => $request->judul,
-            'pengarang' => $request->pengarang,
-            'deskripsi' => $request->deskripsi,
-            'stok' => $request->stok,
-        ]);
-        return redirect()->route('admin.data_buku')->with('success', 'Data buku berhasil diperbarui');
+        try {
+            $buku = Buku::findOrFail($id);
+
+            $buku->update([
+                'judul' => $request->judul,
+                'pengarang' => $request->pengarang,
+                'deskripsi' => $request->deskripsi,
+                'stok' => $request->stok,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('admin.data_buku')->with('success', 'Data buku berhasil diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->withErrors(['error' => 'Gagal memperbarui data buku: ' . $e->getMessage()])->withInput();
+        }
     }
 
     public function bukuDelete($id)
