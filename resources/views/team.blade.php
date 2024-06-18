@@ -12,7 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="/asset/logo_siakadnobg.jpg">
+    <link rel="icon" type="image/png" href="/asset/siakad_nobg.png">
 
     <style>
         body {
@@ -35,7 +35,7 @@
         <div class="flex justify-between items-center relative">
             <div class="flex items-center">
                 <img id="profile-picture" src="{{ asset('asset/siakad.png') }}" alt="Profile Picture"
-                    class="w-36 lg:w-64 object-cover p-0">
+                    class="w-40 lg:w-64 object-cover p-0">
             </div>
             <div class="hidden lg:flex lg:justify-center lg:items-center">
                 <a href="{{ route('dashboard') }}"
@@ -80,7 +80,7 @@
     </div>
 
     <!-- Content -->
-    <main class="container mx-auto px-3 lg:px-20 lg:mt-32 mb-5">
+    <main class="container mx-auto px-3 lg:px-20 mt-1 mt-12 lg:mt-32 mb-5">
         <!-- Team Section -->
         <section class="w-full">
             <h2 class="text-2xl lg:text-4xl font-bold text-center mb-10">Tentang Kami</h2>
@@ -167,10 +167,11 @@
 
     <!-- Footer -->
     <footer class="bg-[#0463CA] text-white py-8 px-10">
-        <div class="container mx-auto flex flex-col lg:flex-row lg:justify-center gap-20">
+        <div class="container mx-auto flex flex-col lg:flex-row lg:justify-center gap-x-20">
             <!-- Left Section -->
-            <div class="flex mb-4 lg:mb-0">
-                <img src="{{ asset('asset/siakad_nobg.png') }}" alt="Universitas Academy Logo" class="w-32 mr-6">
+            <div class="block text-center lg:text-left mb-3 lg:flex lg:mb-0">
+                <img src="{{ asset('asset/siakad_nobg.png') }}" alt="Universitas Academy Logo"
+                    class="w-32 mb-2 lg:mr-6 mx-auto">
                 <div>
                     <h4 class="text-lg font-bold">UNIVERSITAS ACADEMY</h4>
                     <p class="text-sm">Tentang Kampus Lainnya</p>
@@ -201,8 +202,6 @@
             </div>
         </div>
     </footer>
-
-
     <script src="{{ asset('js/toggleActiveDashboard.js') }}"></script>
 </body>
 

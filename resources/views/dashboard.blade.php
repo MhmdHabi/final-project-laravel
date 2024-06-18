@@ -12,7 +12,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="/asset/logo_siakadnobg.jpg">
+    <link rel="icon" type="image/png" href="/asset/siakad_nobg.png">
 
     <style>
         body {
@@ -46,7 +46,7 @@
 
         .slider-buttons {
             position: absolute;
-            top: 50%;
+            top: 40%;
             transform: translateY(-50%);
             display: flex;
             justify-content: space-between;
@@ -109,7 +109,7 @@
         <div class="flex justify-between items-center relative">
             <div class="flex items-center">
                 <img id="profile-picture" src="{{ asset('asset/siakad.png') }}" alt="Profile Picture"
-                    class="w-36 lg:w-64 object-cover p-0">
+                    class="w-40 lg:w-64 object-cover p-0">
             </div>
             <div class="hidden lg:flex lg:justify-center lg:items-center">
                 <a href="{{ route('dashboard') }}"
