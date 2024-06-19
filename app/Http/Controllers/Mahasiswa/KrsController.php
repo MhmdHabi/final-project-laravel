@@ -31,12 +31,9 @@ class KrsController extends Controller
                 'krs' => $krs,
                 'latestKrs' => $latestKrs,
                 'mahasiswaId' => $mahasiswaId,
-                'semesterId' => $semesterId, // Tambahkan semester_id dalam data
+                'semesterId' => $semesterId, 
             ];
 
-            $pdf = PDF::loadView('dashboard.mahasiswa.krs_export_pdf', $data);
-            $namaFile = 'kartu_rancangan_studi' . '_' . Auth::user()->name . '_' . Auth::user()->nim . '.pdf';
-            return $pdf->stream($namaFile);
         }
 
         return view('dashboard.mahasiswa.krs', compact('krs', 'semesterId'));
