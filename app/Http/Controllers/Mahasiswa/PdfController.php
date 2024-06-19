@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DosenPA;
 use App\Models\Krs;
 use App\Models\MatkulKrs;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class PdfController extends Controller
@@ -45,8 +45,7 @@ class PdfController extends Controller
             'semesterId' => $semesterId, // Tambahkan semester_id dalam data
         ];
 
-        // Membuat PDF menggunakan data
-        $pdf = PDF::loadView('dashboard.mahasiswa.krs_export_pdf', $data);
+        $pdf = Pdf::loadView('dashboard.mahasiswa.krs_export_pdf', $data);
         $namaFile = 'kartu_rancangan_studi' . '_' . $user->name . '_' . $user->nim . '.pdf';
         return $pdf->stream($namaFile);
     }
@@ -80,7 +79,7 @@ class PdfController extends Controller
             'dosen_pa' => $dosen_pa,
         ];
 
-        $pdf = PDF::loadView('dashboard.mahasiswa.transkip_export_pdf', $data);
+        $pdf = Pdf::loadView('dashboard.mahasiswa.transkip_export_pdf', $data);
         return $pdf->stream('transkip_' . $mahasiswa->nim . '.pdf');
     }
 }
